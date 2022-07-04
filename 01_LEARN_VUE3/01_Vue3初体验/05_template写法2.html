@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="./js/vue.js"></script>
+</head>
+<body>
+<div id="app"></div>
+
+
+<template id="template2">
+	<div>
+		<h3>{{ message }}</h3>
+		<h2>{{ counter }}</h2>
+		<button @click="increment">+1</button>
+		<button @click="decrement">-1</button>
+	</div>
+</template>
+
+</body>
+
+<script >
+	Vue.createApp({
+		template: `#template2`,
+		data: function () {
+			return {
+				message: '你好全世界',
+				counter: 100
+			}
+		},
+		methods: {
+			increment() {
+				this.counter += 1
+			},
+			decrement() {
+				this.counter -= 1
+			}
+		}
+	}).mount('#app')
+</script>
+</html>
