@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="../js/vue.js"></script>
+</head>
+<style>
+	[v-cloak] {
+			display: none;
+	}
+</style>
+<body>
+<div id="app"></div>
+
+
+<template id="my-app">
+	<div>
+		<h3 v-cloak>{{ message }}</h3>
+	</div>
+</template>
+
+</body>
+
+<script>
+	Vue.createApp({
+		template: `#my-app`,
+		data: function () {
+			return {
+				message: '你好全世界'
+			}
+		},
+		methods: {}
+	}).mount('#app')
+</script>
+</html>
