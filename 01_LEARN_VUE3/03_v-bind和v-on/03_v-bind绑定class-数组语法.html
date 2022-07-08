@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Title</title>
+	<script src="../js/vue.js"></script>
+</head>
+<style>
+	.current {
+			color: red;
+	}
+</style>
+<body>
+<div id="app"></div>
+
+
+<template id="my-app">
+	<h3 :class="className">{{ message }}</h3>
+
+	<!--对象语法	-->
+	<div class="test1" :class="['abc', title, isActive ? 'active': '']">动态绑定class</div>
+
+	<!--数组里可以嵌套对象语法	-->
+	<div class="test1" :class="['abc', title, { 'active': isActive }]">动态绑定class</div>
+</template>
+
+</body>
+
+<script>
+	Vue.createApp({
+		template: `#my-app`,
+		data: function () {
+			return {
+				message: '你好全世界',
+				title: 'ccc',
+				isActive: true
+			}
+		},
+		methods: {
+		}
+	}).mount('#app')
+</script>
+</html>

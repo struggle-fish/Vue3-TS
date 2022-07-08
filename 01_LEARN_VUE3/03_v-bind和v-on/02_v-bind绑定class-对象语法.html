@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Title</title>
+	<script src="../js/vue.js"></script>
+</head>
+<style>
+	.current {
+			color: red;
+	}
+</style>
+<body>
+<div id="app"></div>
+
+
+<template id="my-app">
+	<h3 :class="className">{{ message }}</h3>
+
+	<!--对象语法	-->
+	<div class="test1" :class="{'current': isActive}">动态绑定class</div>
+
+	<div :class="{'current': isActive, 'title': true}">动态绑定class</div>
+
+	<button @click="toggle">切换</button>
+
+	<!--默认calss 和动态结合	-->
+	<div class="abc" :class="classObj" >当前名字</div>
+
+	<div class="abc" :class="getClassObj()" >当前名字2</div>
+
+</template>
+
+</body>
+
+<script>
+	Vue.createApp({
+		template: `#my-app`,
+		data: function () {
+			return {
+				message: '你好全世界',
+				className: 'test1',
+				isActive: false,
+				classObj: {
+					current1: true,
+					title: true
+				}
+			}
+		},
+		methods: {
+			toggle() {
+				this.isActive = !this.isActive
+			},
+			getClassObj () {
+				return {
+					current1: true,
+					title: true
+				}
+			}
+		}
+	}).mount('#app')
+</script>
+</html>
