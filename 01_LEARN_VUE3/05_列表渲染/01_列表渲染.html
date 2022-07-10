@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Title</title>
+	<script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app"></div>
+
+
+<template id="my-app">
+	<!--遍历数组	-->
+	<h3 v-for="(item, index) in movies" :key="index">
+		{{ index }}-{{ item }}
+	</h3>
+
+	<!--遍历对象	-->
+	<h3 v-for="(value, key, index) in info">
+		{{key}}-{{value}}-{{index}}
+	</h3>
+
+	<!--遍历数字	-->
+	<h3 v-for="(num, index) in 10">
+		{{ num }}-{{index}}
+	</h3>
+</template>
+
+</body>
+
+<script>
+	Vue.createApp({
+		template: `#my-app`,
+		data: function () {
+			return {
+				movies: [
+					'大话西游',
+					'盗梦空间',
+					'肖申克的救赎'
+				],
+				info: {
+					name: '小铜钱',
+					age: 19
+				}
+			}
+		},
+		methods: {}
+	}).mount('#app')
+</script>
+</html>
