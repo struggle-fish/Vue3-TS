@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Title</title>
+	<script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app"></div>
+
+
+<template id="my-app">
+	<h3>{{ message }}</h3>
+	<ul>
+		<template v-for="(value, key) in info">
+			<li>
+				{{key}}-{{value}}
+			</li>
+		</template>
+	</ul>
+</template>
+
+</body>
+
+<script>
+	Vue.createApp({
+		template: `#my-app`,
+		data: function () {
+			return {
+				message: '你好全世界',
+				info: {
+					name: '小铜钱',
+					age: 19
+				}
+			}
+		},
+		methods: {}
+	}).mount('#app')
+</script>
+</html>
