@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Title</title>
+	<script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app"></div>
+
+
+<template id="my-app">
+	<h3>{{ fullName }}</h3>
+	<button @click="changeFirstName">点我</button>
+</template>
+
+</body>
+
+<script>
+	Vue.createApp({
+		template: `#my-app`,
+		data: function () {
+			return {
+				message: '你好全世界',
+				firstName: '小鱼儿',
+				lastName: '江',
+			}
+		},
+		computed: {
+			// 会根据依赖的属性改变儿改变
+			// fullName() {
+			// 	console.log('计算属性-fullName')
+			// 	return this.firstName + ' ' + this.lastName
+			// },
+
+			fullName: {
+				get() {
+					return this.firstName + ' ' + this.lastName
+				},
+				set(newName) {
+					console.log(newName, 'newname')
+				}
+			}
+		},
+		methods: {
+			changeFirstName () {
+				this.fullName = '你好'
+			}
+		}
+	}).mount('#app')
+</script>
+</html>
