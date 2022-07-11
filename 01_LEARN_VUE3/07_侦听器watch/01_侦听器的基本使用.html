@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Title</title>
+	<script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app"></div>
+
+
+<template id="my-app">
+	<h3>{{ message }}</h3>
+	<input type="text" v-model="message">
+</template>
+
+</body>
+
+<script>
+	Vue.createApp({
+		template: `#my-app`,
+		data: function () {
+			return {
+				message: '你好全世界'
+			}
+		},
+		watch: {
+			message(newVal, oldVal) {
+				console.log(newVal, 'newVal')
+				console.log(oldVal, 'oldVal')
+			}
+		},
+		methods: {}
+	}).mount('#app')
+</script>
+</html>

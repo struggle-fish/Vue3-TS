@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Title</title>
+	<script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app"></div>
+
+
+<template id="my-app">
+	<h3>{{ info.name }}</h3>
+	<button @click="handleInfo">修改</button>
+	<button @click="handleInfoName">修改name</button>
+
+
+	<h3>{{ info2.name }}</h3>
+	<button @click="handleInfoName2">修改name2</button>
+</template>
+
+</body>
+
+<script>
+	Vue.createApp({
+		template: `#my-app`,
+		data: function () {
+			return {
+				message: '你好全世界',
+				info: {
+					name: '江小鱼',
+					age: 19
+				},
+				info2 : {
+					name: '你好1'
+				}
+			}
+		},
+		watch: {
+			message(newVal, oldVal) {
+				console.log(newVal, 'newVal')
+				console.log(oldVal, 'oldVal')
+			},
+			// 默认情况下，修改属性不会被监听
+			info (newVal, oldVal) {
+				console.log(newVal, 'newVal')
+				console.log(oldVal, 'oldVal')
+			},
+			info2: {
+				handler(newVal, oldVal) {
+					console.log(newVal, 'newVal')
+					console.log(oldVal, 'oldVal')
+				},
+				deep: true, // 深度监听
+				immediate: true // 立即执行
+			}
+		},
+		methods: {
+			handleInfo() {
+				this.info = {
+					name : '小铜钱'
+				}
+			},
+			handleInfoName() {
+				this.info.name = '哈哈哈'
+			},
+			handleInfoName2() {
+				this.info2.name = '我是2'
+			}
+		}
+	}).mount('#app')
+</script>
+</html>
