@@ -9,11 +9,13 @@ import { ref, onBeforeMount, onMounted } from 'vue'
 export default {
   name: "LifeCycleView",
   data() {
+    console.log('data-------------')
     return {
       msg: '信息'
     }
   },
   setup() {
+    console.log('setup--------------')
     const root = ref(null)
     onBeforeMount(() => {
       console.log('vue3-onBeforeMount-值', root.value)
