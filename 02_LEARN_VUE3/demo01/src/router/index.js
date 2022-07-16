@@ -23,6 +23,14 @@ const routes = [
 			{
 				path: 'reactive',
 				component: () => import(/* webpackChunkName: "CompositeApiView2" */ '../views/CompositeApi/reactiveView.vue'),
+			},
+			{
+				path: 'components',
+				component: () => import(/* webpackChunkName: "CompositeApiView2" */ '../views/CompositeApi/componentsView.vue'),
+			},
+			{
+				path: 'provide',
+				component: () => import(/* webpackChunkName: "CompositeApiView2" */ '../views/CompositeApi/componentsProvideView'),
 			}
 		]
 	},
