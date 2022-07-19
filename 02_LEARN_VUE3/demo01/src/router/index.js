@@ -30,14 +30,19 @@ const routes = [
 			},
 			{
 				path: 'provide',
-				component: () => import(/* webpackChunkName: "CompositeApiView2" */ '../views/CompositeApi/componentsProvideView'),
+				component: () => import(/* webpackChunkName: "CompositeApiView2" */ '../views/CompositeApi/componentsProvideView.vue'),
 			}
 		]
 	},
 	{
 		path: '/globalstore',
 		name: 'GlobalStoreView',
-		component: () => import(/* webpackChunkName: "GlobalStoreView" */ '../views/GlobalStoreView')
+		component: () => import(/* webpackChunkName: "GlobalStoreView" */ '../views/GlobalStoreView.vue')
+	},
+	{
+		path: '/ajax',
+		name: 'AjaxView',
+		component: () => import(/* webpackChunkName: "GlobalStoreView" */ '../views/AjaxView.vue')
 	},
   {
     path: '/about',
