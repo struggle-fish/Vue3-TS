@@ -34,6 +34,11 @@ const routes = [
 			}
 		]
 	},
+	{
+		path: '/globalstore',
+		name: 'GlobalStoreView',
+		component: () => import(/* webpackChunkName: "GlobalStoreView" */ '../views/GlobalStoreView')
+	},
   {
     path: '/about',
     name: 'about',
