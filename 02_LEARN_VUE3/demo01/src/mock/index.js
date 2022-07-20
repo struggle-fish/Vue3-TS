@@ -6,7 +6,7 @@ Mock.setup({
 })
 
 
-var data = Mock.mock(
+Mock.mock(
 	'/user/userinfo',
 	'get',
 	() => {

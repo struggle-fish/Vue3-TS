@@ -42,7 +42,17 @@ const routes = [
 	{
 		path: '/ajax',
 		name: 'AjaxView',
-		component: () => import(/* webpackChunkName: "GlobalStoreView" */ '../views/AjaxView.vue')
+		component: () => import(/* webpackChunkName: "AjaxView" */ '../views/AjaxView.vue')
+	},
+	{
+		path: '/vuex',
+		name: 'VuexView',
+		component: () => import(/* webpackChunkName: "VuexView" */ '../views/VuexView.vue')
+	},
+	{
+		path: '/vuex02',
+		name: 'VuexView02',
+		component: () => import(/* webpackChunkName: "VuexView02" */ '../views/VuexView02.vue')
 	},
   {
     path: '/about',

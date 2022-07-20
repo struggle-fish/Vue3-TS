@@ -5,6 +5,7 @@
     <router-link to="/compositeapi">组合Api</router-link><br/>
     <router-link to="/globalstore">全局状态</router-link><br/>
     <router-link to="/ajax">ajax请求</router-link><br/>
+    <router-link to="/vuex">vuex浅尝</router-link><br/>
   </div>
 </template>
 

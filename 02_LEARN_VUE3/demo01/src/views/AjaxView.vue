@@ -1,5 +1,5 @@
 <template>
-
+  <div>数据请求</div>
 </template>
 
 <script>
