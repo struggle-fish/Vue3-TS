@@ -1,16 +1,22 @@
 <template>
   <div class="home">
-    <div id="d1">
-    </div>
+    <TopNav/>
+    <SwiperComponent/>
+
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import TopNav from "@/components/TopNav";
+import SwiperComponent from "@/components/SwiperComponent";
+
 
 export default {
   name: 'HomeView',
   components: {
+    TopNav,
+    SwiperComponent
   }
 }
 </script>
