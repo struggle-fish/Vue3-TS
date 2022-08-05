@@ -17,6 +17,7 @@
 import {defineComponent} from 'vue'
 import {Autoplay, EffectFade, Pagination} from 'swiper'
 import {Swiper, SwiperSlide} from 'swiper/vue';
+import {getBanner} from "@/api";
 
 export default defineComponent({
   name: "SwiperComponent",
@@ -34,15 +35,35 @@ export default defineComponent({
     }
   },
   setup() {
+
     const onSwiper = (swiper) => {
       console.log(swiper);
     };
     const onSlideChange = () => {
       console.log('slide change');
     };
+    console.log(getBanner())
+    const { refetch } = getBanner()
+
+    const getBannerFetch = () => {
+      refetch()
+    }
+    getBannerFetch()
+    // const getBannerFetch = async () => {
+    //   try {
+    //     const resp = await getBanner()
+    //     console.log(resp, '数据格式')
+    //   } catch (error) {
+    //     console.log(error, '报错了-banner')
+    //   }
+    // }
+    //
+    // getBannerFetch()
+
     return {
       onSwiper,
       onSlideChange,
+      getBannerFetch,
       modules: [Autoplay, EffectFade, Pagination],
     };
   },
