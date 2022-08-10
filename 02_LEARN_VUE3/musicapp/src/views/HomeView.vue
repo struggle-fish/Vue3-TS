@@ -2,7 +2,8 @@
   <div class="home">
     <TopNav/>
     <SwiperComponent/>
-
+    <IconList/>
+    <MusicList/>
   </div>
 </template>
 
@@ -10,13 +11,16 @@
 // @ is an alias to /src
 import TopNav from "@/components/TopNav";
 import SwiperComponent from "@/components/SwiperComponent";
-
+import IconList from "@/components/IconList";
+import MusicList from "@/components/MusicList";
 
 export default {
   name: 'HomeView',
   components: {
     TopNav,
-    SwiperComponent
+    SwiperComponent,
+    IconList,
+    MusicList
   }
 }
 </script>

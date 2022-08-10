@@ -7,7 +7,7 @@
       @swiper="onSwiper"
       @slideChange="onSlideChange"
   >
-    <swiper-slide v-for="(item,i) in imgs" :key="i">
+    <swiper-slide v-for="(item,i) in imgs?.banners" :key="i">
       <img :src="item.pic" >
     </swiper-slide>
   </swiper>
@@ -27,11 +27,6 @@ export default defineComponent({
   },
   data() {
     return {
-      imgs: [
-        {pic: require('../assets/img/swiper1.jpg')},
-        {pic: require('../assets/img/swiper2.jpg')},
-        {pic: require('../assets/img/swiper3.png')}
-      ]
     }
   },
   setup() {
@@ -42,28 +37,15 @@ export default defineComponent({
     const onSlideChange = () => {
       console.log('slide change');
     };
-    console.log(getBanner())
-    const { refetch } = getBanner()
 
-    const getBannerFetch = () => {
-      refetch()
-    }
-    getBannerFetch()
-    // const getBannerFetch = async () => {
-    //   try {
-    //     const resp = await getBanner()
-    //     console.log(resp, '数据格式')
-    //   } catch (error) {
-    //     console.log(error, '报错了-banner')
-    //   }
-    // }
-    //
-    // getBannerFetch()
+    const { refetch: bannerFetch, data: imgs } = getBanner()
+
+    bannerFetch()
 
     return {
       onSwiper,
       onSlideChange,
-      getBannerFetch,
+      imgs,
       modules: [Autoplay, EffectFade, Pagination],
     };
   },

@@ -36,7 +36,7 @@ function request (config, options) {
 		if (!StaticAxios.isCancel(err)) {
 			console.log(err)
 		}
-
+		console.log('报错了-0-11')
 		state.error = err
 	}).finally(() => {
 		state.loading = false
