@@ -16,14 +16,16 @@
       >
 
         <swiper-slide v-for="(item, index) in musicList" :key="index">
-          <img :src="item.picUrl" >
-          <div class="name">{{item.name}}</div>
-          <div class="count">
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-bofang1"></use>
-            </svg>
-            <span>{{ changeValue(item.playCount) }}</span>
-          </div>
+          <router-link :to="{path:'/listview',query:{id:item.id}}">
+            <img :src="item.picUrl" >
+            <div class="name">{{item.name}}</div>
+            <div class="count">
+              <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-bofang1"></use>
+              </svg>
+              <span>{{ changeValue(item.playCount) }}</span>
+            </div>
+          </router-link>
         </swiper-slide>
       </swiper>
 
@@ -117,6 +119,10 @@ export default {
     }
   }
   .mlist{
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
     .swiper-container{
       width: 100%;
       //height: 4rem;

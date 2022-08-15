@@ -22,3 +22,9 @@ export const getMusicList = (limit = 10) => {
 export function getMusicListApi(limit=10){
 	return axios.get(`${baseUrl}/personalized?limit=${limit}`)
 }
+
+// 获取歌单的详情
+export function getPlaylistDetail(id){
+	return axios.get(`${baseUrl}/playlist/detail?id=${id}`)
+}
+
