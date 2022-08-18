@@ -1,5 +1,7 @@
-import useAxios from './myaxios'
+import useAxios from './myaxios2'
 import axios from "axios";
+import request from "@/api/request";
+
 let baseUrl = 'http://localhost:3003'
 
 // 获取轮播图的api,type:资源类型,对应以下类型,默认为 0 即PC
@@ -9,6 +11,10 @@ export function getBanner(type = 2){
 		method: 'get',
 		url: `/banner?type=${type}`
 	})
+}
+
+export function getBanner2() {
+	return request.get(`${baseUrl}/banner?type=2&a=1`)
 }
 
 
@@ -27,4 +33,5 @@ export function getMusicListApi(limit=10){
 export function getPlaylistDetail(id){
 	return axios.get(`${baseUrl}/playlist/detail?id=${id}`)
 }
+
 
