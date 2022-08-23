@@ -1,6 +1,4 @@
 <template>
-  <div v-if="error.code == -1">页面有错误</div>
-  <div v-else>{{ data }}</div>
   <swiper
       :modules="modules"
       :slides-per-view="1"
@@ -19,7 +17,7 @@
 import {defineComponent, onMounted} from 'vue'
 import {Autoplay, EffectFade, Pagination} from 'swiper'
 import {Swiper, SwiperSlide} from 'swiper/vue';
-import {getBanner, getBanner2} from "@/api";
+import {getBanner} from "@/api";
 export default defineComponent({
   name: "SwiperComponent",
   components: {
@@ -39,19 +37,14 @@ export default defineComponent({
     };
 
     const { refetch: bannerFetch, data: imgs } = getBanner()
-    const { data, error } = getBanner2()
 
     bannerFetch()
     onMounted(async () => {
-      console.log(data,  'data33333')
-      console.log(error, 'data-error')
     })
     return {
       onSwiper,
       onSlideChange,
       imgs,
-      data,
-      error,
       modules: [Autoplay, EffectFade, Pagination],
     };
   },

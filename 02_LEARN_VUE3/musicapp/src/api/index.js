@@ -1,6 +1,7 @@
 import useAxios from './myaxios2'
 import axios from "axios";
 import request from "@/api/request";
+import useAsyncState from "@/api/useAsyncState";
 
 let baseUrl = 'http://localhost:3003'
 
@@ -14,7 +15,8 @@ export function getBanner(type = 2){
 }
 
 export function getBanner2() {
-	return request.get(`${baseUrl}/banner?type=2&a=1`)
+	// 如果在setup里调用就包裹一层 useAsyncState
+	return useAsyncState(request.get(`${baseUrl}/banner?type=2&a=1`))
 }
 
 

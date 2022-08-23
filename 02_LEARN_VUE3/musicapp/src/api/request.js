@@ -1,6 +1,5 @@
 import qs from "qs";
 import {myAxios} from "@/api/myAxios";
-import useAsyncState from "@/api/useAsyncState";
 
 
 const request = {
@@ -16,7 +15,7 @@ const request = {
 			url,
 			params: this.packageAppId(params)
 		}
-		return useAsyncState(myAxios(config, customOptions))
+		return myAxios(config, customOptions)
 	},
 
 	post(url, params = {}, customOptions = {}) {
