@@ -19,13 +19,85 @@
         </svg>
       </div>
     </div>
+
+    <div class="content">
+      <div class="contentLeft">
+        <img :src="playlist.coverImgUrl">
+        <div class="count">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-bofang1"></use>
+          </svg>
+          <span>{{changeValue(playlist.playCount) }}</span>
+        </div>
+      </div>
+
+
+      <div class="contentRight">
+        <h3>{{playlist.name}}</h3>
+        <div class="author">
+          <img :src="playlist.creator.avatarUrl"  class="header">
+          <span>{{playlist.creator.nickname}}</span>
+        </div>
+        <div class="description">
+          {{playlist.description}}
+        </div>
+
+      </div>
+
+
+
+    </div>
+
+
+    <div class="iconList">
+      <div class="iconItem">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-liaotian"></use>
+        </svg>
+        <span>{{playlist.commentCount }}</span>
+      </div>
+      <div class="iconItem">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-iconfontzhizuobiaozhun20"></use>
+        </svg>
+        <span>{{playlist.shareCount }}</span>
+      </div>
+      <div class="iconItem">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-download"></use>
+        </svg>
+        <span>下载</span>
+      </div>
+      <div class="iconItem">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-duoxuankuang"></use>
+        </svg>
+        <span>多选</span>
+      </div>
+    </div>
   </div>
+
+
 </template>
 
 <script>
 export default {
   name: "ListViewTop",
-  props: ['playlist']
+  props: ['playlist'],
+  methods: {
+    changeValue:function(num){
+      let res = 0
+      if(num>=100000000){
+        res = num/100000000
+        res = res.toFixed(2) + '亿'
+
+      }else if(num>10000){
+        res = num/10000
+        res = res.toFixed(2) + '万'
+      }
+      return res
+    }
+  }
 }
 </script>
 
