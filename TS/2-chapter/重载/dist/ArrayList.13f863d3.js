@@ -117,59 +117,66 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"src/index.ts":[function(require,module,exports) {
+})({"src/ArrayList.ts":[function(require,module,exports) {
 "use strict";
 
-// 函数重载适用于项目中某些相同功能但细节又不同的应用场景
-// 比如，吃饭是个函数，表示吃饭功能
-// 西方人用叉子，中国人用筷子，印度人用手，这就是细节不同
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var messages = [
-//let messages: Array<Message> = [
-{
-  id: 1,
-  type: 'image',
-  sendmessage: "你好啊,今晚咱们一起去三里屯吧"
-}, {
-  id: 2,
-  type: 'audio',
-  sendmessage: "朝辞白帝彩云间，千里江陵一日还"
-}, {
-  id: 3,
-  type: 'audio',
-  sendmessage: "你好！张无忌"
-}, {
-  id: 4,
-  type: 'image',
-  sendmessage: "刘老根苦练舞台绝技！"
-}, {
-  id: 5,
-  type: 'image',
-  sendmessage: "今晚王牌对王牌节目咋样?"
-}];
-// 实现签名函数，只有实现签名才有函数体，实现签名只能有一个
-function getMessage(value, valu2) {
-  if (valu2 === void 0) {
-    valu2 = 1;
+// 方法重载
+// **方法签名：**和函数签名一样，方法签名 = 方法名称 + 方法参数 + 方法参数类型 + 返回值类型四者合成。
+//  1.对现有的数组进行封装，让数组增删改变得更加好用
+//  2.提供get方法 remove方法 显示方法【add方法】
+// 其中需求中的remove方法有两个，我们用方法重载来实现
+var ArrayList = /** @class */function () {
+  // 第一步：定义一个引用属性【数组】
+  function ArrayList(element) {
+    this.element = element;
   }
-  // valu2 需要添加默认值
-  if (typeof value === 'number') {
-    return messages.find(function (msg) {
-      return value === msg.id;
+  // 第二步：根据索引来查询数组中指定元素
+  ArrayList.prototype.get = function (index) {
+    return this.element[index];
+  };
+  // 第三步: 显示方法
+  ArrayList.prototype.show = function () {
+    this.element.forEach(function (ele) {
+      return console.log(ele);
     });
-  } else {
-    return messages.filter(function (msg) {
-      return value === msg.type;
-    }).splice(0, valu2);
-  }
-}
-// unknown 可以作为父类，但不能作为子类
-var msg = getMessage(1, 'df');
-var msg2 = getMessage('audio', 2);
-console.log(msg, 'msg');
-console.log(msg2, 'msg2');
+  };
+  // remove(value: number | object): number | object
+  ArrayList.prototype.remove = function (value) {
+    this.element = this.element.filter(function (ele, index) {
+      // 如果是根据数字【元素索引】去删除元素，remove方法返回的是一个数字
+      if (typeof value === 'number') {
+        return value !== index;
+      } else {
+        // 如果是根据对象去删除元素，remove方法返回的是一个对象
+        return value !== ele;
+      }
+    });
+    return value;
+  };
+  return ArrayList;
+}();
+var stuOne = {
+  stuname: "wnagwu",
+  age: 23
+};
+var stuTwo = {
+  stuname: "lisi",
+  age: 39
+};
+var stuThree = {
+  stuname: "liuqi",
+  age: 31
+};
+var arrayList = new ArrayList([stuOne, stuTwo, stuThree]);
+arrayList.show();
+// 如果是根据数字【元素索引】去删除元素，remove方法返回的是一个数字
+// 如果是根据对象去删除元素，remove方法返回的是一个对象
+// let value = arrayList.remove(0)
+// console.log("删除的元素为第:", value, "学生")
+// arrayList.show()
+// let value = arrayList.remove(stuTwo)
+// console.log("删除的学生对象为:", value)
+// arrayList.show()
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -339,5 +346,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/index.ts"], null)
-//# sourceMappingURL=/src.f10117fe.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/ArrayList.ts"], null)
+//# sourceMappingURL=/ArrayList.13f863d3.js.map

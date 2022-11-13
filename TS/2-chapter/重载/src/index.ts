@@ -94,10 +94,11 @@ console.log("msg2:", msg2)// msg: 你好啊,今晚咱们一起去三里屯吧
 
 
 
-function getMessage(id: number): Message // 重载签名
-function getMessage(msgType: MessageType): Message[] // 重载签名
+function getMessage(id: number, myname: string): Message // 重载签名
+function getMessage(msgType: MessageType, readRecordCount: number): Message[] // 重载签名
 // 实现签名函数，只有实现签名才有函数体，实现签名只能有一个
-function getMessage(value: number | MessageType): Message | undefined | Array<Message> {
+function getMessage(value: number | MessageType, valu2: any = 1): Message | undefined | Array<Message> {
+  // valu2 需要添加默认值
   if (typeof value === 'number') {
     return messages.find((msg) => {
       return value === msg.id
@@ -105,12 +106,14 @@ function getMessage(value: number | MessageType): Message | undefined | Array<Me
   } else {
     return messages.filter((msg) => {
       return value === msg.type
-    })
+    }).splice(0, valu2)
   }
 
 }
 
-let msg = getMessage(1) 
-let msg2 = getMessage('audio')
-
+// unknown 可以作为父类，但不能作为子类
+let msg = getMessage(1, 'df') 
+let msg2 = getMessage('audio', 2)
+console.log(msg, 'msg')
+console.log(msg2, 'msg2')
 export {}
