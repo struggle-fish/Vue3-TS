@@ -12,7 +12,7 @@ class MyLocalStorage {
    // 静态属性和对象属性[实例属性】是类中两大成员
   static localstorage: MyLocalStorage // 静态引用属性
 
-  constructor() {
+  private constructor() {
     console.log("这是TS的单件设计模式的静态方法的构造器");
   }
 
