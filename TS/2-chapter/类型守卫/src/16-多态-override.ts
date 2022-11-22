@@ -159,7 +159,7 @@ class Dahuoche extends Vechile {
 class Customer {
   // TODO：多态，这里写父类，就不用一个个写子类了
   rentVechile(vechile: Vechile) {
-
+    // TODO 独有方法 配合 instanceof 使用
     if (vechile instanceof Car) {
       vechile.checkIsWeigui(true);
     } else if (vechile instanceof Bus) {
@@ -167,6 +167,8 @@ class Customer {
     } else if (vechile instanceof Truck) {
       vechile.checkIsOverWeight(true)
     }
+
+    // TODO 调用重写的方法
     return vechile.calculateRent();
     //<Bus>vechile 效果= vechile as Bus
     //vechile as unknown
