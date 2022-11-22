@@ -28,3 +28,50 @@ Array，这更符合预期。 Array 和我们定义的普通函数一样，
 
 */
 
+// typeof 的替代方案
+
+Object.prototype.toString.call // 借用 toString 
+
+Object.prototype.toString.call ([ ]) // 展示[ object Array ]  
+
+Object.prototype.toString.call(null) // 展示[ object null ] 
+
+Object.prototype.toString.call('Set类型的变量') // 展示[ object Set ]
+
+Object.prototype.toString.call('Map类型的变量')  //展示[ object Map ] 
+
+
+
+// typeof 的替代方案依然无法解决的问题
+
+// 就是无法获取一个自定义的类的实例变量或构造函数的对象变量的真正创建类型，
+// 答案是使用 instanceof 来解决。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
