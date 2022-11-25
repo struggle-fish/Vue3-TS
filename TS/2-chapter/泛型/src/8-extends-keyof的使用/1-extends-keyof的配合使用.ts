@@ -39,7 +39,7 @@ let order = new Order(1, orderDate, "李武", "33333",
 let objectImpl = new ObjectImpl(order, "orderDetailArray");
 console.log("objectImpl.getValue():", objectImpl.getValue());
 
-
+// objectImpl.setValue(1)
 
 objectImpl.getValue().forEach((orderDetail)=>{
   console.log(orderDetail.productname);
