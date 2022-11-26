@@ -188,6 +188,7 @@ let lasttotal = cust.rent<Vechile>(vechileList);
 //let lasttotal = cust.rent(vechileList);
 console.log("lasttotal:", lasttotal)
 
+// TODO: 这里也是泛型，但是是字符串的
 //let stringList: List<string> = new ArrayList<string>();
 //let dd = cust.rent<string>(stringList);
 
