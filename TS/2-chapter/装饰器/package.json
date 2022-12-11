@@ -9,7 +9,7 @@
     "dev:build": "tsc -w", 
     "dev:start":"nodemon --watch dist/teaching js --exec  node ./dist/teaching/1ClassDecorator.js",
     "start":  "concurrently npm:dev:*",
-    "tsc":"tsc src/teaching/1ClassDecorator.ts  --target ES5 -w --experimentalDecorators"
+    "tsc":"tsc src/8-方法装饰器-应用.ts  --target ES5 -w --experimentalDecorators"
   },
   "author": "",
   "license": "ISC",
