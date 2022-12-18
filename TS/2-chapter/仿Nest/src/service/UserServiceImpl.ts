@@ -16,6 +16,6 @@ export default class UserServiceImpl {
   }
 
   register() {
-    console.log("usersevice...register")
+    console.log("usersevice...register-----------------")
   }
 }

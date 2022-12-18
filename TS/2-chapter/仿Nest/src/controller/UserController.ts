@@ -15,13 +15,15 @@ class UserController {
 
   public login(): void {
     // TODO: 获取 userService 这个类，并调用里面的方法
-    // TODO: 第一种方式存储在全局对象里，
+    // TODO: 第一种方式存储在全局对象里，直接获取，容易被覆盖
     // 增加....
     // let userService: UserService = CollectionInstance.get("userService");
     // userService.register();
 
-    let UserServiceImpl: UserServiceImpl = Reflect.getOwnPropertyDescriptor(UserController.prototype, "userServiceImpl").value//S100
-    UserServiceImpl.register();
+    // TODO: 第二种方式 放到了类的属性上，类是不会重名的
+    let UserServiceImplA: UserServiceImpl = Reflect.getOwnPropertyDescriptor(UserController.prototype, "userServiceImpl")?.value //S100
+    console.log('000----UserServiceImpl', UserServiceImpl)
+    UserServiceImplA.register();
   }
 }
 let controller = new UserController();
