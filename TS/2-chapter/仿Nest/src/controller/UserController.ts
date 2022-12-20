@@ -4,6 +4,7 @@ import UserServiceImpl from '../service/UserServiceImpl'
 import UserServiceInter from '../service/UserServiceInter'
 import CollectionInstance from '../collection/'
 import Singleton from '../decorator/singletondecorator'
+import { Userinfo } from '../entity/UserInfo'
 // 10-21 【仿 Nestjs 装饰器实战】 依赖注入实现和升级自动装配装饰器
 //  实现步骤   1. 建立伪接口类 UserServiceInter
 //            2. 修改UserService的名字为userServiceImpl类
@@ -13,8 +14,8 @@ class UserController {
 
 
   // @Autowired("userServiceImpl", true) // 传递是否是单例模式 职责模糊，做了两个事儿
-  @Autowired("userServiceImpl")
-  @Autowired("userServiceImpl")
+  // @Autowired("userServiceImpl")
+  // @Autowired("userServiceImpl")
   @Autowired("userServiceImpl")//  修改Inject 为更专业的 Autowired 单词
   @Singleton(true) // 是否开启单例模式
   private userServiceImpl!: UserServiceInter // 修改Inject 为更专业的 Autowired 单词
@@ -29,7 +30,11 @@ class UserController {
     // TODO: 第二种方式 放到了类的属性上，类是不会重名的
     let UserServiceImplA: UserServiceImpl = Reflect.getOwnPropertyDescriptor(UserController.prototype, "userServiceImpl")?.value //S100
     console.log('000----UserServiceImpl', UserServiceImpl)
-    UserServiceImplA.register();
+    // UserServiceImplA.register();
+
+    
+    let userinfofordb: Userinfo = UserServiceImplA.Login('admin', '123')
+    console.log(userinfofordb)
   }
 } 
 let controller = new UserController();
