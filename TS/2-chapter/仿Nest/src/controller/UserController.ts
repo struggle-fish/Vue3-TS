@@ -3,6 +3,7 @@ import Autowired from '../decorator/autowireddecortator'
 import UserServiceImpl from '../service/UserServiceImpl'
 import UserServiceInter from '../service/UserServiceInter'
 import CollectionInstance from '../collection/'
+import Singleton from '../decorator/singletondecorator'
 // 10-21 【仿 Nestjs 装饰器实战】 依赖注入实现和升级自动装配装饰器
 //  实现步骤   1. 建立伪接口类 UserServiceInter
 //            2. 修改UserService的名字为userServiceImpl类
@@ -10,7 +11,12 @@ import CollectionInstance from '../collection/'
 //          最后别忘了修改UserController中的login方法中的S100中的属性名为userServiceImpl
 class UserController {
 
+
+  // @Autowired("userServiceImpl", true) // 传递是否是单例模式 职责模糊，做了两个事儿
+  @Autowired("userServiceImpl")
+  @Autowired("userServiceImpl")
   @Autowired("userServiceImpl")//  修改Inject 为更专业的 Autowired 单词
+  @Singleton(true) // 是否开启单例模式
   private userServiceImpl!: UserServiceInter // 修改Inject 为更专业的 Autowired 单词
 
   public login(): void {
@@ -25,7 +31,7 @@ class UserController {
     console.log('000----UserServiceImpl', UserServiceImpl)
     UserServiceImplA.register();
   }
-}
+} 
 let controller = new UserController();
 controller.login();
 

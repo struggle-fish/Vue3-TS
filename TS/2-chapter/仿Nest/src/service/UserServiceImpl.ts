@@ -1,6 +1,16 @@
 // TODO: 这个函数就是被注入的
 export default class UserServiceImpl {
 
+
+  static userServiceImpl: UserServiceImpl
+  static getInstance() {
+    if (!this.userServiceImpl) {
+      this.userServiceImpl = new UserServiceImpl()
+    }
+    return this.userServiceImpl
+  }
+
+
   constructor() {
     console.log("UserServiceImpl构造器....");
   }
@@ -16,6 +26,6 @@ export default class UserServiceImpl {
   }
 
   register() {
-    console.log("usersevice...register-----------------")
+    console.log("我我我我我我usersevice...register-----------------")
   }
 }
