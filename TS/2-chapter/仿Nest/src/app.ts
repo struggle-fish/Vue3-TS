@@ -26,6 +26,12 @@ app.use(session({
 app.use(express.urlencoded({ extended: false }))////处理表单数据 url
 app.use(router)//添加路由到express应用对象-app对象中
 
-let server = app.listen(3008, function () {
-  console.log('node服务器启动,端口3001') //服务启动完成,输出日志
+app.get('/', (req, res) => {
+  res.send('Hello World!')
 })
+
+let server = app.listen(3008, function () {
+  console.log('node服务器启动,端口 3008') //服务启动完成,输出日志
+})
+
+

@@ -18,12 +18,14 @@ class UserController {
   @get("/login")
   login(req: Request, res: Response): void {
     console.log('我要登录---111')
+
     let htmlstr = `<div><form method="post" 
     action = "/loginprocess"><div>用户d名: 
     <input type='text' name = 'username'/> </div><div>
-     密码: <input type='password' name = 'pwd'/> </div>
-     <div><input type="submit" value = "提交" /> </div>
-     </form></div>`
+    密码: <input type='password' name = 'pwd'/> </div>
+    <div><input type="submit" value = "提交" /> </div>
+    </form></div>`
+    
     res.send(htmlstr);
   }
 
