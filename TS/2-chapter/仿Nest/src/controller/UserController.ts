@@ -1,43 +1,71 @@
 import 'reflect-metadata'
-import Autowired from '../decorator/autowireddecortator'
-import UserServiceImpl from '../service/UserServiceImpl'
-import UserServiceInter from '../service/UserServiceInter'
-import CollectionInstance from '../collection/'
-import Singleton from '../decorator/singletondecorator'
+import { Request, Response } from 'express'
+import { Autowired, Singleton, get, Controller } from '../decorator'
+
+import { UserServiceImpl, UserServiceInter } from '../service'
+import CollectionInstance from '../collection'
+import { getSession } from '../util/sessionUtil'
 import { Userinfo } from '../entity/UserInfo'
-// 10-21 【仿 Nestjs 装饰器实战】 依赖注入实现和升级自动装配装饰器
-//  实现步骤   1. 建立伪接口类 UserServiceInter
-//            2. 修改UserService的名字为userServiceImpl类
-//            3. 修改自动装配装饰器【Autowired】代码:见增加和修改部分
-//          最后别忘了修改UserController中的login方法中的S100中的属性名为userServiceImpl
+
+@Controller("/")
 class UserController {
 
-
-  // @Autowired("userServiceImpl", true) // 传递是否是单例模式 职责模糊，做了两个事儿
-  // @Autowired("userServiceImpl")
-  // @Autowired("userServiceImpl")
-  @Autowired("userServiceImpl")//  修改Inject 为更专业的 Autowired 单词
-  @Singleton(true) // 是否开启单例模式
+  //@Autowired("userServiceImpl")//  修改Inject 为更专业的 Autowired 单词
+  @Autowired("userServiceImpl")
+  @Singleton(true)
   private userServiceImpl!: UserServiceInter // 修改Inject 为更专业的 Autowired 单词
 
-  public login(): void {
-    // TODO: 获取 userService 这个类，并调用里面的方法
-    // TODO: 第一种方式存储在全局对象里，直接获取，容易被覆盖
+  @get("/login")
+  login(req: Request, res: Response): void {
+    console.log('我要登录---111')
+    let htmlstr = `<div><form method="post" 
+    action = "/loginprocess"><div>用户d名: 
+    <input type='text' name = 'username'/> </div><div>
+     密码: <input type='password' name = 'pwd'/> </div>
+     <div><input type="submit" value = "提交" /> </div>
+     </form></div>`
+    res.send(htmlstr);
+  }
+
+
+  // @post("/loginprocess")
+  loginprocess(req: Request, res: Response): void {
+
+    console.log("loginprocess=this:", this);
+    let session = getSession(req);
+
+    let UserServiceImpl: UserServiceImpl =
+      Reflect.getOwnPropertyDescriptor(UserController.prototype,
+        "userServiceImpl")?.value//S100
+    
+    let userinfofrmdb: Userinfo = UserServiceImpl.Login(req.body.username, req.body.pwd)
+    if (userinfofrmdb && userinfofrmdb.username)
+      session.userinfofrmdb = userinfofrmdb
+
+    // 基础复习：req.send只能发送一次,如果想发送多次,就必须使用res.write
+    res.setHeader("Content-Type", "text/html;charset=UTF-8")
+    let outputhtml = "";
+    if (userinfofrmdb.role === "admin") {
+      outputhtml += `<div>管理员:${userinfofrmdb.role}</div>`
+      outputhtml += `<div><a href="/rights">进入管理员权限页面</a></div>`
+    }
+    res.write(outputhtml);
+    res.write(`<div>登录成功,欢迎你:${userinfofrmdb.username}</div>`);
+    res.write(`<div><a  href="/">进入首页</a></div>`);
+    res.end();
+  }
+
+  test(): void {
     // 增加....
     // let userService: UserService = CollectionInstance.get("userService");
     // userService.register();
 
-    // TODO: 第二种方式 放到了类的属性上，类是不会重名的
-    let UserServiceImplA: UserServiceImpl = Reflect.getOwnPropertyDescriptor(UserController.prototype, "userServiceImpl")?.value //S100
-    console.log('000----UserServiceImpl', UserServiceImpl)
-    // UserServiceImplA.register();
-
-    
-    let userinfofordb: Userinfo = UserServiceImplA.Login('admin', '123')
-    console.log(userinfofordb)
+    let UserServiceImpl: UserServiceImpl =
+      Reflect.getOwnPropertyDescriptor(UserController.prototype,
+        "userServiceImpl")?.value//S100
+    UserServiceImpl.register();
   }
-} 
-let controller = new UserController();
-controller.login();
+}
 
-export { }
+
+
