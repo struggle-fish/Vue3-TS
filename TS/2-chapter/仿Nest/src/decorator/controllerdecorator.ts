@@ -1,7 +1,5 @@
 import { router } from '../util/router'
-type MethodType = "get" | "post"
-
-export default MethodType
+import MethodType from '../util/methodtype'
 
 type MyClassDecorator = <T extends { new(...args: any): any }>
   (targetClass: T) => any

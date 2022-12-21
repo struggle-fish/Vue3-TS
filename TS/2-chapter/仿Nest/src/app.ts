@@ -6,6 +6,8 @@ import session from 'express-session'
 // 因为装饰器在/router/controlldecorators 这个文件中,
 // 这一执行直接导致router增加了路由完成，就是controlldecorators的第S100行代码的执行
 import './controller/UserController'
+import './controller/RightsController'
+import './controller/FoodController'
 //import './controller/RightsController'
 
 // 然后在引入路由器
@@ -26,9 +28,7 @@ app.use(session({
 app.use(express.urlencoded({ extended: false }))////处理表单数据 url
 app.use(router)//添加路由到express应用对象-app对象中
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+
 
 let server = app.listen(3008, function () {
   console.log('node服务器启动,端口 3008') //服务启动完成,输出日志
