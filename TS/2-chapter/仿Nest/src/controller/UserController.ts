@@ -1,6 +1,6 @@
 import 'reflect-metadata'
 import { Request, Response } from 'express'
-import { Autowired, Singleton, get, Controller } from '../decorator'
+import { Autowired, Singleton, get, post, Controller } from '../decorator'
 
 import { UserServiceImpl, UserServiceInter } from '../service'
 import CollectionInstance from '../collection'
@@ -30,7 +30,7 @@ class UserController {
   }
 
 
-  // @post("/loginprocess")
+  @post("/loginprocess")
   loginprocess(req: Request, res: Response): void {
 
     console.log("loginprocess=this:", this);

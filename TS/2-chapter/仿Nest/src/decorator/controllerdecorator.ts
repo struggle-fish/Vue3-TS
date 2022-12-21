@@ -16,15 +16,32 @@ type MyClassDecorator = <T extends { new(...args: any): any }>
 
     for (let methodname in targetClass.prototype) {
       let routerpath = Reflect.getMetadata("path", targetClass.prototype, methodname)
-      
+
+      // 请求类型
+      let methodType: MethodType = Reflect.getMetadata('methodType', targetClass.prototype, methodname)
+
+
+
       // 拿到装饰器对应的方法
       const targetMethodfunc = targetClass.prototype[methodname];
       // S100理解：当执行对应routerpath时，会自动执行targetMethodfunc方法
-      if (routerpath) {
-        router.get(routerpath, targetMethodfunc);// S100
+      if (routerpath && methodType) {
+        // router.get(routerpath, targetMethodfunc);// S100
+
+        router[methodType](routerpath, targetMethodfunc)
       }
     }
     
 
   } 
 }
+
+
+
+// TODO: 把具体的值get赋值给类型MethodType的时候，把值当类型 类型和值就相同
+// type MethodType = "get" | "post" 
+// let myMethodType: MethodType = "get"
+// let router = { "get": function () { }, "post": function () { } }
+// let methodType: string = "get"
+
+// router[myMethodType] // TODO: 使用变量的时候，编译期间并不能推导出变量的值是 get 还是 post

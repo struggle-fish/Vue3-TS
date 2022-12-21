@@ -4,14 +4,20 @@ type MyMethodDecoratorType =
 
 
   // TODO: 这个装饰器到底要做啥
-export function get(reqPath: string): MyMethodDecoratorType {
-  return function (targetClassPrototype, methodname, dataprops) {
-    console.log("进入到方法装饰器", "path:", reqPath);
+function requestDecorator(methodType: string) {
 
-    let TargetClass = targetClassPrototype.constructor;
-    let TargetClassObj = new TargetClass();
-
-    Reflect.defineMetadata("path", reqPath, targetClassPrototype, methodname)
-
+  return function (reqPath: string): MyMethodDecoratorType {
+    return function (targetClassPrototype, methodname, dataprops) {
+      console.log("进入到方法装饰器", "path:", reqPath);
+  
+      let TargetClass = targetClassPrototype.constructor;
+      let TargetClassObj = new TargetClass();
+  
+      Reflect.defineMetadata("path", reqPath, targetClassPrototype, methodname)
+      Reflect.defineMetadata('methodType', methodType, targetClassPrototype, methodname)
+    }
   }
 }
+
+export const get = requestDecorator('get')
+export const post = requestDecorator('post')
