@@ -21,15 +21,15 @@ type MyClassDecorator = <T extends { new(...args: any): any }>
        // 拿到装饰器对应的方法
       const targetMethodfunc: RequestHandler = targetClass.prototype[methodname];
       // 获取中间件装饰器保存的中间件函数元数据
-      let middleawre: RequestHandler = Reflect.getMetadata("middleawares",
+      let middleawares: RequestHandler[] = Reflect.getMetadata("middleawares",
       targetClass.prototype, methodname)
 
 
       // S100理解：当执行对应routerpath时，会自动执行targetMethodfunc方法
       if (routerpath && methodType) {
         // router.get(routerpath, targetMethodfunc);// S100
-        if (middleawre) {
-          router[methodType](routerpath, middleawre, targetMethodfunc)
+        if (middleawares) {
+          router[methodType](routerpath, ...middleawares, targetMethodfunc)
         } else {
           router[methodType](routerpath, targetMethodfunc)
         }

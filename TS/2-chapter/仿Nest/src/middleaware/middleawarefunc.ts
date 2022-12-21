@@ -13,6 +13,15 @@ export const isValidUser = (req: Request, res: Response,
     res.write("您是被禁人士，被限制访问");
     res.end();
   } else {
+    // 进入到下一个中间件函数来执行,如果没有中间件,就直接执行请求方法
     next();
   }
+}
+
+
+// 测试中间件函数1
+export const SecondMiddleAware = (req: Request, res: Response,
+  next: NextFunction) => {
+  console.log("第二个中间件函数....")
+  next();
 }
