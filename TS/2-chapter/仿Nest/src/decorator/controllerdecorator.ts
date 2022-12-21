@@ -1,5 +1,6 @@
 import { router } from '../util/router'
 import MethodType from '../util/methodtype'
+import { RequestHandler } from 'express'
 
 type MyClassDecorator = <T extends { new(...args: any): any }>
   (targetClass: T) => any
@@ -17,16 +18,21 @@ type MyClassDecorator = <T extends { new(...args: any): any }>
 
       // 请求类型
       let methodType: MethodType = Reflect.getMetadata('methodType', targetClass.prototype, methodname)
+       // 拿到装饰器对应的方法
+      const targetMethodfunc: RequestHandler = targetClass.prototype[methodname];
+      // 获取中间件装饰器保存的中间件函数元数据
+      let middleawre: RequestHandler = Reflect.getMetadata("middleawares",
+      targetClass.prototype, methodname)
 
 
-
-      // 拿到装饰器对应的方法
-      const targetMethodfunc = targetClass.prototype[methodname];
       // S100理解：当执行对应routerpath时，会自动执行targetMethodfunc方法
       if (routerpath && methodType) {
         // router.get(routerpath, targetMethodfunc);// S100
-
-        router[methodType](routerpath, targetMethodfunc)
+        if (middleawre) {
+          router[methodType](routerpath, middleawre, targetMethodfunc)
+        } else {
+          router[methodType](routerpath, targetMethodfunc)
+        }
       }
     }
     
