@@ -5,7 +5,8 @@ import { getSession } from '../util/sessionUtil';
 export const isValidUser = (req: Request, res: Response,
   next: NextFunction) => {
   
-    console.log("执行isValidUser...")
+    console.log("第一个中间件函数...执行isValidUser...")
+
   let session = getSession(req);
 
   if (session.userinfofrmdb && session.userinfofrmdb.mark === "noallowlogin") {

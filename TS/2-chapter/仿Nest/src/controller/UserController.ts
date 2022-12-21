@@ -73,7 +73,7 @@ class UserController {
       res.write(`<div>登录成功,欢迎你:${userinfofrmdb.username}</div>`);
     }
     res.write(`<div><a  href="/">进入首页</a></div>`);
-    res.write(`<div><a  href="/showFood">进入美食首页</a></div>`);
+    res.write(`<div><a href="/showFood/gongbaojiding/300">进入美食首页</a></div>`);
     res.end();
     
   }
