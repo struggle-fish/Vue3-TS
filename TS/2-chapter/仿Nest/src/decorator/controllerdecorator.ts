@@ -31,7 +31,7 @@ type MyClassDecorator = <T extends { new(...args: any): any }>
         if (middleawares) {
           router[methodType](routerpath, ...middleawares, targetMethodfunc)
         } else {
-          router.get(routerpath, targetMethodfunc);
+          // router.get(routerpath, targetMethodfunc);
           router[methodType](routerpath, targetMethodfunc)
         }
       }
