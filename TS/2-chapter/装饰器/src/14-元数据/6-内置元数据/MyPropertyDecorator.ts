@@ -5,7 +5,7 @@ import collection from './Collection'
 export function InjectProperty(injectid?: any): MyPropertyDecorator {
 
   return function (targetproperty, propertyKey) {
-    console.log(" 进入属性参数装饰器....", targetproperty);
+    console.log(" 进入属性参数装饰器222....", targetproperty);
     console.log("获取类属性的数据类型");
     const PropClass = Reflect.getMetadata("design:type", targetproperty, propertyKey);
     let PropClassObj = new PropClass();

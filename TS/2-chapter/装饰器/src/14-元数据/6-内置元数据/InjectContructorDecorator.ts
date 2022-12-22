@@ -7,7 +7,7 @@ type MyParameterDecorator = (target: any,
   return (target, paramname, paramindex) => {
 
 
-    console.log(" 进入构造函数的参数装饰器....", target);
+    console.log(" 进入构造函数的参数装饰器22222....", target);
     console.log("获取类构造器参数类型组成的数组....")
     const constructorParamTypeArr =
     Reflect.getMetadata("design:paramtypes", target);
