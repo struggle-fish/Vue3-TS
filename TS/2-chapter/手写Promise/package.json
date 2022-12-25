@@ -1,0 +1,31 @@
+{
+  "name": "huanjingdajian",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "startparcel": "parcel ./index.html",
+    "dev:build": "tsc -w",
+    "dev:start": "nodemon --watch dist/teaching js --exec  node ./dist/teaching/1ClassDecorator.js",
+    "start": "concurrently npm:dev:*",
+    "tsnode": "ts-node  src/controller/UserController.ts",
+    "app": "nodemon --watch src/ -e ts --exec ts-node ./src/app.ts",
+    "ctrl": "ts-node src/controller/HomeController.ts",
+    "tsc": "tsc src/8-方法装饰器-应用.ts  --target ES5 -w --experimentalDecorators"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.15",
+    "@types/express-session": "^1.17.5",
+    "concurrently": "^7.6.0",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "nodemon": "^2.0.20",
+    "parcel-bundler": "^1.12.5",
+    "reflect-metadata": "^0.1.13",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
+  }
+}
