@@ -72,6 +72,28 @@ export default class Promise<T = any> {
     })
   }
 
+  static all(promises: Promise[]): Promise {
+
+    return new Promise((resolve, reject) => {
+      let allPromiseResolveSuccessValue: Array<any> = []
+      promises.forEach((promise, index) => {
+        promise.then((resolveSuccess) => {
+          ProcessData(resolveSuccess, index)
+        }, (rejectFail) => {
+          return reject(rejectFail)
+        })
+      })
+
+      function ProcessData(resolveSuccess: any, index: number) {
+        allPromiseResolveSuccessValue[index] = resolveSuccess
+        if (index === promises.length - 1) {
+          resolve(allPromiseResolveSuccessValue)
+        }
+      }
+
+    })
+  }
+
   processManyAsyncAndSync(resolveInthen: ResolveType, rejectInthen: RejectType, resolve: ResolveType, reject: RejectType) {
     let result: any
 
