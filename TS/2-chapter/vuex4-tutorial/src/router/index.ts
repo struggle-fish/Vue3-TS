@@ -1,7 +1,20 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import FoodSortView from '../views/FoodSortView.vue'
+import HotelSortView from '../views/HotelSortView.vue'
 
 const routes: Array<RouteRecordRaw> = [
+
+  {
+    path: '/foodSort',
+    name: 'foodSort',
+    component: FoodSortView,
+  },
+  {
+    path: '/hotelSort',
+    name: 'hotelSort',
+    component: HotelSortView
+  },
   {
     path: '/',
     name: 'home',
