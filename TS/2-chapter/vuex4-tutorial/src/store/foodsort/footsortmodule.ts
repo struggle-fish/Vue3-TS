@@ -4,7 +4,7 @@ import { foodModule } from '@/store/food/foodmodule'
 import { state, FoodSortListState } from './state'
 import { Types } from './type'
 import foodSortRec from './serverdata'
-// foodSortModule/getFoodSortList
+
 export const foodSortModule: Module<FoodSortListState, RootState> = {
   namespaced: true,
   state,

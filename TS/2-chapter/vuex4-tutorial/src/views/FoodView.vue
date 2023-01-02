@@ -18,7 +18,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, computed, onMounted } from 'vue'
-import { useStore } from '@/vuex4/index12-13'
+import { useStore } from '@/vuex4/idnex12-14'
 import { RootState } from '@/store/rootstate'
 import getFoodSortModuleGetters from '@/store/foodsort/gettersincrease'
 
@@ -26,6 +26,8 @@ export default defineComponent({
   setup() {
     const store = useStore<RootState>()
     console.log(store, 'store是什么1')
+    // console.log(store.getters['foodSortModule/getFoodSortList'], '数据啊')
+    console.log(getFoodSortModuleGetters['foodSortModule/getFoodSortList'], '数据啊-1')
     // onMounted(() => {
     //   store.dispatch('foodSortModule/FindFoodSortList')
     // })
