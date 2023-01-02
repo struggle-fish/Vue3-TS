@@ -18,13 +18,14 @@
 </template>
 <script lang="ts">
 import { defineComponent, computed, onMounted } from 'vue'
-import { useStore } from '@/vuex4/index2'
+import { useStore } from '@/vuex4/index12-9'
 import { RootState } from '@/store/rootstate'
 import getFoodSortModuleGetters from '@/store/foodsort/gettersincrease'
 
 export default defineComponent({
   setup() {
     const store = useStore<RootState>()
+    console.log(store, 'store是什么1')
     // onMounted(() => {
     //   store.dispatch('foodSortModule/FindFoodSortList')
     // })

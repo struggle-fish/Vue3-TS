@@ -1,4 +1,4 @@
-import { createStore } from '@/vuex4/index2'
+import { createStore } from '@/vuex4/index12-9'
 import { RootState } from './rootstate'
 import { foodSortModule, hotelSortModule } from './modulecollection'
 
