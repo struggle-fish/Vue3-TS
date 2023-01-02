@@ -18,7 +18,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, computed, onMounted } from 'vue'
-import { useStore } from '@/vuex4/index12-9'
+import { useStore } from '@/vuex4/index12-13'
 import { RootState } from '@/store/rootstate'
 import getFoodSortModuleGetters from '@/store/foodsort/gettersincrease'
 
