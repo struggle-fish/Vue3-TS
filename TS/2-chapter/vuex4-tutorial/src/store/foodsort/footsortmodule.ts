@@ -1,4 +1,4 @@
-import { ActionContext, Module } from '@/vuex4/'
+import { ActionContext, Module } from '@/vuex4/index-12-15'
 import { RootState } from '@/store/rootstate'
 import { foodModule } from '@/store/food/foodmodule'
 import { state, FoodSortListState } from './state'
