@@ -1,4 +1,4 @@
-import { ActionContext, Module } from '@/vuex4/index-12-15'
+import { ActionContext, Module } from '@/vuex4/index12-16'
 import { RootState } from '@/store/rootstate'
 import { foodModule } from '@/store/food/foodmodule'
 import { state, FoodSortListState } from './state'
@@ -23,7 +23,7 @@ export const foodSortModule: Module<FoodSortListState, RootState> = {
     }
   },
   actions: {
-    [Types.FindFoodSortList]({dispatch,commit,state}:ActionContext<FoodSortListState, RootState>) {
+    [Types.FindFoodSortList]({ commit }:ActionContext<FoodSortListState, RootState>) {
       setTimeout(() => {
         console.log("actions:setTimeOut...");
         commit(Types.FindFoodSortList, foodSortRec)

@@ -492,11 +492,11 @@ export interface ModuleTree<R> {
 }
 export interface Module<S, R> {
   namespaced?: boolean;
-  state?: S | (() => S);
-  actions?: ActionTree<S, R>;
-  mutations?: MutationTree<S>;
-  modules?: ModuleTree<R>
+  state?: S;
   getters?: GetterTree<S, R>
+  mutations?: MutationTree<S>;
+  actions?: ActionTree<S, R>;
+  modules?: ModuleTree<R>
 }
 
 export type Commit = (type: string, payload?: any, options?: any) => void;

@@ -1,4 +1,4 @@
-import { Module } from '@/vuex4/'
+import { Module } from '@/vuex4/index12-16'
 import { RootState } from '@/store/rootstate'
 import { state, FoodStateListState } from './state'
 import { Types } from './type'
