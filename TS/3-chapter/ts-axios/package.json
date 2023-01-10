@@ -32,7 +32,8 @@
     "semantic-release": "semantic-release",
     "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
     "precommit": "lint-staged",
-    "travis-deploy-once": "travis-deploy-once"
+    "travis-deploy-once": "travis-deploy-once",
+    "startparcel": "parcel ./demo/index.html"
   },
   "lint-staged": {
     "{src,test}/**/*.ts": [
@@ -96,6 +97,7 @@
     "jest-config": "^23.6.0",
     "lint-staged": "^8.0.0",
     "lodash.camelcase": "^4.3.0",
+    "parcel-bundler": "^1.12.5",
     "prettier": "^1.14.3",
     "prompt": "^1.0.0",
     "replace-in-file": "^3.4.2",
