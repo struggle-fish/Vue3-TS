@@ -3,8 +3,9 @@ const baseUrl = `http://localhost:3003`
 // http://localhost:3003/hot/topic?limit=30&offset=30
 const date = new Date()
 axios({
+  method: 'post',
   url: `${baseUrl}/hot/topic`,
-  
+
   // 1-数组形式
   // params: {
   //   limit: ['30'],
@@ -46,5 +47,7 @@ axios({
   //   foo: 'ba1r',
   //   baz: null
   // }
-
+  data: {
+    a: 1
+  }
 })
