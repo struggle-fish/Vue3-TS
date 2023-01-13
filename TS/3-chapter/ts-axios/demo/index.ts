@@ -49,5 +49,8 @@ axios({
   // }
   data: {
     a: 1
-  }
+  },
+  headers: {
+    'content-type': 'application/json;charset=utf-8'
+  },
 })
