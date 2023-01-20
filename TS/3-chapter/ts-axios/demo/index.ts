@@ -53,7 +53,10 @@ axios({
 
 
 
-  // data: searchParams,
+  data: {
+    a: 1,
+    b: 2
+  },
   // headers: {
   //   'content-type': 'application/json;charset=utf-8'
   // },
