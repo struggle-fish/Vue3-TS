@@ -8,7 +8,7 @@ const searchParams = new URLSearchParams(paramsString)
 axios({
   method: 'get',
   url: `${baseUrl}/hot/topic`,
-  // timeout: 100,
+  timeout: 1,
   // 1-数组形式
   // params: {
   //   limit: ['30'],

@@ -1,6 +1,6 @@
 import { parseHeaders } from './helpers/headers'
 import { AxiosPromise, AxiosRequestConfig, AxiosResponse } from './types'
-
+import { createError } from './helpers/error'
 export default function xhr(config: AxiosRequestConfig): AxiosPromise {
   return new Promise((resolve, reject) => {
     const {
@@ -49,11 +49,13 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
     }
 
     request.onerror = function handleError() {
-      reject(new Error('网络错误'))
+      reject(createError('网络错误', config, null, request))
     }
 
     request.ontimeout = function handleTimeout() {
-      reject(new Error(`timeout ${timeout} ms`))
+      reject(
+        createError(`超时了 ${timeout} ms`, config, 'ECONNABORTED', request)
+      )
     }
 
     Object.keys(headers).forEach(name => {
@@ -69,7 +71,15 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
       if (response.status >= 200 && response.status < 300) {
         resolve(response)
       } else {
-        reject(new Error(`状态码错误${response.status}`))
+        reject(
+          createError(
+            `状态码错误${response.status}`,
+            config,
+            null,
+            request,
+            response
+          )
+        )
       }
     }
   })
