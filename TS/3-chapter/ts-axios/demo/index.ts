@@ -1,4 +1,4 @@
-import axios from '../src/index'
+import axios, { AxiosError } from '../src/index'
 const baseUrl = `http://localhost:3003`
 // http://localhost:3003/hot/topic?limit=30&offset=30
 const date = new Date()
@@ -62,4 +62,8 @@ axios({
   // },
 }).then(res => {
   console.log(res, '数据呢11')
+}).catch((error: AxiosError) => {
+  console.log(error.message, '错误信息')
+  console.log(error.code)
+  console.log(error.config)
 })
