@@ -2,8 +2,11 @@ import axios from '../src/index'
 const baseUrl = `http://localhost:3003`
 // http://localhost:3003/hot/topic?limit=30&offset=30
 const date = new Date()
+const paramsString = 'q=URLUtils.searchParams&topic=api'
+const searchParams = new URLSearchParams(paramsString)
+
 axios({
-  method: 'post',
+  method: 'get',
   url: `${baseUrl}/hot/topic`,
 
   // 1-数组形式
@@ -47,10 +50,13 @@ axios({
   //   foo: 'ba1r',
   //   baz: null
   // }
-  data: {
-    a: 1
-  },
-  headers: {
-    'content-type': 'application/json;charset=utf-8'
-  },
+
+
+
+  // data: searchParams,
+  // headers: {
+  //   'content-type': 'application/json;charset=utf-8'
+  // },
+}).then(res => {
+  console.log(res, '数据呢11')
 })
