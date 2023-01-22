@@ -75,25 +75,43 @@ const searchParams = new URLSearchParams(paramsString)
 //   }
 // })
 
+
+// axios.interceptors.request.use(config => {
+//   config.headers.test += '1'
+//   return config
+// })
+// axios.interceptors.request.use(config => {
+//   config.headers.test += '2'
+//   return config
+// })
+
+axios.interceptors.response.use(res => {
+  console.log(res.data, '拦截器')
+  res.data?.data?.push({
+    label: 'test',
+    countryList: []
+  })
+  return res
+})
 interface ResponseData<T = any> {
   code: number
-  hot: T[]
+  data: T[]
 }
 
 interface TopList {
-  actId: number
-  [key: string]: any
+  label: string
+  countryList: []
 }
 
 function getTopList<T>() {
-  return axios<ResponseData<T>>(`${baseUrl}/hot/topic`)
-        .then(res => res.data)
-        .catch(err => console.error(err))
+  return axios<ResponseData<T>>(`${baseUrl}/countries/code/list`)
+    .then(res => res.data)
+    .catch(err => console.error(err))
 }
 
 async function test() {
   const resp = await getTopList<TopList>()
-  console.log(resp?.hot[0].actId, '这是什么')
+  // console.log(resp?.hot[0].actId, '这是什么')
 }
 
 test()
