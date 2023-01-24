@@ -9,7 +9,8 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
       method = 'get',
       headers,
       responseType,
-      timeout
+      timeout,
+      cancelToken
     } = config
 
     const request = new XMLHttpRequest()
@@ -65,6 +66,14 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
         request.setRequestHeader(name, headers[name])
       }
     })
+
+    if (cancelToken) {
+      cancelToken.promise.then(reason => {
+        request.abort()
+        reject(reason)
+      })
+    }
+
     request.send(data)
 
     function handleResponse(response: AxiosResponse): void {
