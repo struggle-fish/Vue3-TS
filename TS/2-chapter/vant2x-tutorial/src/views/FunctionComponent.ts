@@ -1,90 +1,124 @@
-import { VNode, CreateElement, RenderContext } from 'vue';
-import { InjectOptions, PropsDefinition } from 'vue/types/options';
+// import { VNode, CreateElement, RenderContext } from 'vue';
+// import { InjectOptions, PropsDefinition } from 'vue/types/options';
 
-export type EventHandler = (event: Event) => void;
+// export type EventHandler = (event: Event) => void;
 
-// TODO: TS: 注解 定义一个字典类型
-export type ObjectIndex = Record<string, any>;
+// // TODO: TS: 注解 定义一个字典类型
+// export type ObjectIndex = Record<string, any>;
 
-// TODO: TS: 不懂 这个是一个函数？然后返回的是VNode 做啥用的？
-export type ScopedSlot<Props = any> = (
-  props?: Props
-) => VNode[] | VNode | undefined;
+// // TODO: TS: 不懂 这个是一个函数？然后返回的是VNode 做啥用的？
+// export type ScopedSlot<Props = any> = (
+//   props?: Props
+// ) => VNode[] | VNode | undefined;
 
-export type DefaultSlots = {
-  default?: ScopedSlot;
-};
+// export type DefaultSlots = {
+//   default?: ScopedSlot;
+// };
 
-export type ScopedSlots = DefaultSlots & {
-  [key: string]: ScopedSlot | undefined;
-};
+// export type ScopedSlots = DefaultSlots & {
+//   [key: string]: ScopedSlot | undefined;
+// };
 
-export type ModelOptions = {
-  prop?: string;
-  event?: string;
-};
-// 字典类型的一个属性
-export type DefaultProps = ObjectIndex;
+// export type ModelOptions = {
+//   prop?: string;
+//   event?: string;
+// };
+// // 字典类型的一个属性
+// export type DefaultProps = ObjectIndex;
 
-export type FunctionComponent<
-  Props = DefaultProps,
-  PropDefs = PropsDefinition<Props>
-> = {
-  (
-    h: CreateElement,
-    props: Props,
-    slots: ScopedSlots,
-    context: RenderContext<Props>
-  ): VNode | undefined;
+// export type FunctionComponent<
+//   Props = DefaultProps,
+//   PropDefs = PropsDefinition<Props>
+// > = {
+//   (
+//     h: CreateElement,
+//     props: Props,
+//     slots: ScopedSlots,
+//     context: RenderContext<Props>
+//   ): VNode | undefined;
   
-  // TODO: TS: 不懂 既然有 Props 了为什么还有在定义一个 PropDefs
-  props?: PropDefs;
-  model?: ModelOptions;
-  inject?: InjectOptions;
+//   // TODO: TS: 不懂 既然有 Props 了为什么还有在定义一个 PropDefs
+//   props?: PropDefs;
+//   model?: ModelOptions;
+//   inject?: InjectOptions;
+// };
+
+
+
+// // ------------------------------------------------------------------
+// export type ButtonProps = {
+//   tag?: keyof HTMLElementTagNameMap | string; // 可以自定义标签
+//   text?: string;
+//   icon?: string;
+//   color?: string;
+//   iconPosition?: 'left' | 'right';
+// };
+// export type ButtonSlots = DefaultSlots & {
+//   icon?: ScopedSlot;
+//   loading?: ScopedSlot;
+// };
+
+// function Button(
+//   h: CreateElement,
+//   props: ButtonProps,
+//   slots: ButtonSlots,
+//   ctx: RenderContext<ButtonProps>
+// ) {
+//   return undefined
+// }
+
+// function test(sfc: FunctionComponent) {
+
+// }
+// /*
+// type FunctionComponent<Props = ObjectIndex, PropDefs = PropsDefinition<Props>> = {
+//   (h: CreateElement, props: Props, slots: ScopedSlots, context: RenderContext<Props>): VNode | undefined;
+//   props?: PropDefs | undefined;
+//   model?: ModelOptions | undefined;
+//   inject?: InjectOptions | undefined;
+// }
+// */
+// test(Button)
+
+
+
+// type FunctionObj = {
+//   (): void
+//   a?: string
+// } 
+// function Test1() {}
+
+// Test1.b = '1'
+
+// function Test(src: FunctionObj) {}
+
+// Test(Test1)
+
+
+type DescribableFunction = {
+  description: string;
+  (someArg: number): boolean;
 };
 
-
-
-// ------------------------------------------------------------------
-export type ButtonProps = {
-  tag?: keyof HTMLElementTagNameMap | string; // 可以自定义标签
-  text?: string;
-  icon?: string;
-  color?: string;
-  iconPosition?: 'left' | 'right';
-};
-export type ButtonSlots = DefaultSlots & {
-  icon?: ScopedSlot;
-  loading?: ScopedSlot;
-};
-
-function Button(
-  h: CreateElement,
-  props: ButtonProps,
-  slots: ButtonSlots,
-  ctx: RenderContext<ButtonProps>
-) {
-  return undefined
+function doSomething(fn: DescribableFunction) {
+  console.log(fn.description + " returned " + fn(6));
 }
 
-function test(sfc: FunctionComponent) {
+const fn = (a: number) => a > 10;
 
-}
-/*
-type FunctionComponent<Props = ObjectIndex, PropDefs = PropsDefinition<Props>> = {
-  (h: CreateElement, props: Props, slots: ScopedSlots, context: RenderContext<Props>): VNode | undefined;
-  props?: PropDefs | undefined;
-  model?: ModelOptions | undefined;
-  inject?: InjectOptions | undefined;
-}
-*/
-test(Button)
+fn.description = 'Jerry';
+fn.a = '3'
+
+doSomething(fn)
 
 
 
 
-console.log(Config)
 
-type a = {
-  [key: string]: ScopedSlot | undefined;
-}
+
+
+
+
+
+
+
