@@ -1,4 +1,4 @@
-import { AxiosInstance, AxiosRequestConfig, AxiosStatic } from './types'
+import { AxiosRequestConfig, AxiosStatic } from './types'
 import Axios from './core/Axios'
 import { extend } from './helpers/util'
 import defaults from './default'
@@ -25,5 +25,17 @@ axios.create = function create(config) {
 axios.CancelToken = CancelToken
 axios.Cancel = Cancel
 axios.isCancel = isCancel
+
+axios.all = function all(promises) {
+  return Promise.all(promises)
+}
+
+axios.spread = function spread(callback) {
+  return function wrap(arr) {
+    return callback.apply(null, arr)
+  }
+}
+
+axios.Axios = Axios
 
 export default axios

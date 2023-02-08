@@ -64,7 +64,7 @@ export interface AxiosError extends Error {
   response?: AxiosResponse
 }
 
-export interface Axios {
+export interface AxiosType {
   defaluts: AxiosRequestConfig
 
   interceptors: {
@@ -94,6 +94,8 @@ export interface Axios {
     data?: any,
     config?: AxiosRequestConfig
   ): AxiosPromise<T>
+
+  getUri(config?: AxiosRequestConfig): string
 }
 
 // TODO: 用接口定义一个函数类型
@@ -102,7 +104,9 @@ export interface AxiosInstance extends Axios {
 
   <T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T>
 }
-
+export interface AxiosClassStatic {
+  new (config: AxiosRequestConfig): Axios
+}
 export interface AxiosStatic extends AxiosInstance {
   create(config?: AxiosRequestConfig): AxiosStatic
 
@@ -110,7 +114,14 @@ export interface AxiosStatic extends AxiosInstance {
 
   Cancel: CancelStatic
   isCancel: (value: any) => boolean
+
+  all<T>(promises: Array<T | Promise<T>>): Promise<T[]>
+
+  spread<T, R>(callback: (...args: T[]) => R): (arr: T[]) => R
+
+  Axios: AxiosClassStatic
 }
+
 export interface AxiosInterceptorManager<T> {
   use(resolved: ResolvedFn<T>, rejected?: RejectedFn): number
 

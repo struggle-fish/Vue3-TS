@@ -4,9 +4,10 @@ import {
   Method,
   AxiosResponse,
   ResolvedFn,
-  RejectedFn
+  RejectedFn,
+  AxiosType
 } from '../types'
-import dispatchRequest from './dispatchRequest'
+import dispatchRequest, { transformURL } from './dispatchRequest'
 import InterceptorManager from './InterceptorManager'
 import mergeConfig from './mergeConfig'
 interface Interceptors {
@@ -19,12 +20,12 @@ interface PromiseChain<T> {
   rejected?: RejectedFn
 }
 
-export default class Axios {
-  defaults: AxiosRequestConfig
+export default class Axios implements AxiosType {
+  defaluts: AxiosRequestConfig
   interceptors: Interceptors
 
   constructor(initConfig: AxiosRequestConfig) {
-    this.defaults = initConfig
+    this.defaluts = initConfig
     this.interceptors = {
       request: new InterceptorManager<AxiosRequestConfig>(),
       response: new InterceptorManager<AxiosResponse>()
@@ -95,6 +96,11 @@ export default class Axios {
 
   patch(url: string, data?: any, config?: AxiosRequestConfig): AxiosPromise {
     return this._requestMethodWithData('patch', url, data, config)
+  }
+
+  getUri(config?: AxiosRequestConfig): string {
+    config = mergeConfig(this.defaluts, config!)
+    return transformURL(config)
   }
 
   _requestMethodWithData(
