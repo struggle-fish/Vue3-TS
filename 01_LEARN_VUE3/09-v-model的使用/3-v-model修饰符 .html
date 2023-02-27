@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Title</title>
+	<script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app"></div>
+
+
+<template id="my-app">
+	<!-- 1.lazy修饰符 -->
+	lazy修饰符：<input type="text" v-model.lazy="message"><br/>
+
+	<!-- 2.number修饰符 -->
+	number修饰符：<input type="text" v-model.number="message"><br/>
+
+	<!-- 3.trim修饰符 -->
+	trim修饰符：<input type="text" v-model.trim="message"><br/>
+
+	message-{{ message }}<br/>
+	message-{{ typeof message }}<br/>
+	<button @click="showResult">查看结果</button>
+</template>
+
+</body>
+
+<script>
+	Vue.createApp({
+		template: `#my-app`,
+		data: function () {
+			return {
+				message: '你好全世界'
+			}
+		},
+		methods: {
+			showResult() {
+				console.log(this.message);
+			}
+		}
+	}).mount('#app')
+</script>
+</html>
