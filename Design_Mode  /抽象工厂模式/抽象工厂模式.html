@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+
+  // 抽象工厂模式
+	// 抽象工厂模式并不直接生成实例，而是用于对产品类的创建
+
+	// 基类
+  class User {
+	  constructor(name, role, pages) {
+		  this.name = name
+		  this.role = role
+		  this.pages = pages
+	  }
+
+		welcome() {
+			console.log('欢迎回来', this.name)
+	  }
+
+		dataShow() {
+			throw new Error('抽象方法需要被实现')
+		}
+
+
+  }
+
+	class SuperAdmin extends User {
+		constructor(name) {
+			super(name, 'superadmin', ['home', 'list']);
+		}
+
+	  // 重写方法
+		dataShow() {
+			console.log('superadmin-datashow')
+		}
+
+		// 自己私有的方法
+		addRight() {
+
+		}
+		addUser() {}
+		// ...
+	}
+
+
+  class Admin extends User {
+	  constructor(name) {
+		  super(name, 'admin', ['home']);
+	  }
+
+	  // 重写方法
+	  dataShow() {
+		  console.log('Admin-datashow')
+	  }
+
+	  // 自己私有的方法
+		// ...
+  }
+
+	// 不生成实例，只返回类
+	function getAbstractUserFactory(role) {
+		switch (role) {
+			case 'superadmin':
+				return SuperAdmin
+			break
+			case 'admin':
+				return Admin
+			break
+			default:
+				throw new Error('参数错误')
+		}
+	}
+
+  let UserClass = getAbstractUserFactory('superadmin')
+  console.log(UserClass)
+
+	let user = new UserClass('hahah')
+  user.dataShow()
+  user.addUser()
+
+</script>
