@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+/*
+创建员工信息，有一个创建一个的话，太麻烦了
+
+*/
+
+	var employee1 = {
+		name: '员工1',
+		age: 1
+	}
+	var employee2 = {
+		name: '员工2',
+		age: 2
+	}
+
+/*
+
+用构造函数，去多次创建员工对象
+
+避免重复复制冗余代码，只传递不同的参数即可
+
+ */
+
+function Employee(name, age) {
+	this.name = name
+	this.age = age
+
+	this.say = function () {
+		console.log(`${this.name}-${this.age}`)
+	}
+}
+var employee3 = new Employee('员工3', 3)
+var employee4 = new Employee('员工4', 3)
+
+
+</script>

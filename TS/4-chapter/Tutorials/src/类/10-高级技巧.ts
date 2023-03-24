@@ -97,6 +97,12 @@ let point3d: Point3d = {
 }
 
 
+let fn = (): string => {
+	return 'a'
+}
+
+
+
 export {}
 
 
