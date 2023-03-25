@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+
+	// 装饰器模式能够很好的对已有功能进行拓展，这样不会更改原有代码，对其他的业务产生影响
+	// 这方便我们在较少的改动下对软件功能进行拓展
+
+	Function.prototype.before = function (beforeFn){
+		var _this = this
+
+		return function (){
+			beforeFn.apply(this, arguments)
+			return _this.apply(this, arguments)
+		}
+	}
+	Function.prototype.after = function (afterFn) {
+		var _this = this
+
+		return function () {
+			let ret = _this.apply(this,arguments)
+			afterFn.apply(this, arguments)
+			return ret
+		}
+	}
+
+	function test() {
+		console.log(111)
+	}
+	var test1 = test.before(() => {
+		console.log('00')
+	}).after(() => {
+		console.log('22')
+	})
+	test1()
+
+
+</script>
