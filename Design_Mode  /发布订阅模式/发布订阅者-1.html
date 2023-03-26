@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+      .box {
+          display: flex;
+          justify-content: space-between;
+      }
+      .side {
+          background: #42b983;
+          width: 20%;
+      }
+      .right {
+          flex: 1;
+          background: yellow;
+          height: 500px;
+      }
+      .navbox {
+          background: #0074D9;
+          width: 100%;
+          height: 100px;
+      }
+	</style>
+</head>
+<body>
+<div class="navbox">
+
+</div>
+<div class="box">
+	<div class="side" id="side">
+		<ul>
+			<li>
+				首页
+			</li>
+			<li>
+				用户管理
+			</li>
+			<li>
+				权限管理
+			</li>
+		</ul>
+	</div>
+	<div class="right">
+
+	</div>
+</div>
+</body>
+</html>
+<script>
+
+
+	const PubSub1 = {
+		messages: {},
+
+		publish(type, data) {
+			if(!this.messages[type]) {
+				return
+			}
+			this.messages[type].forEach(item => item(data))
+		},
+
+		subscribe(type, cb) {
+			if (!this.messages[type]) {
+				this.messages[type] = [cb]
+			} else {
+				this.messages[type].push(cb)
+			}
+		},
+
+		unsubscribe(type, cb) {
+			if (!this.messages[type]) {
+				return
+			}
+			if (!cb) {
+				// 取消所有的
+				this.messages[type] && (this.messages[type].length = 0)
+			} else {
+				this.messages[type] = this.messages[type].filter(item => item !== cb)
+			}
+		}
+	}
+	PubSub1.subscribe('updateBread', function (data){
+		console.log('订阅--', data)
+		// 订阅后的事情和发布完全解耦了
+		document.querySelector('.right').innerHTML = data
+	})
+
+
+	let eleLi = document.querySelectorAll('#side li')
+	for (let i = 0; i < eleLi.length; i++) {
+		eleLi[i].onclick = function () {
+			// console.log(i)
+			PubSub1.publish('updateBread', this.innerHTML)
+		}
+	}
+</script>

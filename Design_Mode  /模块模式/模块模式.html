@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+	// 模块模式 其实就是模块化
+	/*
+		模块化模式，最初被定义为在传统软件工程中为类提供私有和公共封装的一种方法
+
+		能够使一个单独的对象拥有公共/私有的方法和变量，从而屏蔽来自全局作用域的特殊部分，这样可以减少我们的函数名与在页面中其他脚本区域内定义的函数名冲突的可能性
+	*/
+
+
+	// 封闭空间
+	const obj = (function (){
+		var count = 0
+		return {
+			increse() {
+				return ++count
+			},
+			decrese() {
+				return --count
+			}
+		}
+	})()
+	obj.increse()
+	obj.decrese()
+
+	// export {} 方式
+</script>
+<script>
+
+</script>

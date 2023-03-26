@@ -60,6 +60,17 @@
 			} else {
 				this.messages[type].push(cb)
 			}
+		},
+		unsubscribe(type, cb) {
+			if (!this.messages[type]) {
+				return
+			}
+			if (!cb) {
+				// 取消所有的
+				this.messages[type] && (this.messages[type].length = 0)
+			} else {
+				this.messages[type] = this.messages[type].filter(item => item !== cb)
+			}
 		}
 	}
 
@@ -74,8 +85,9 @@
 	PubSub1.subscribe('A', testB)
 	PubSub1.subscribe('B', testB)
 
-	console.log(PubSub1)
+
 
 	PubSub1.publish('A', '我是A')
-
+	PubSub1.unsubscribe('B', testB)
+	console.log(PubSub1)
 </script>
