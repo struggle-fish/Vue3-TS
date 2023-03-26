@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+	/*
+		观察者模式
+		观察者模式包括  观察目标  和 观察者 两类对象
+
+		一个目标可以有任意数目的与之相依赖的观察者
+
+		一旦观察目标的状态发生改变，所有的观察者都将得到通知
+
+		当一个对象的状态方式改变时，所有依赖于它的对象都得到通知并被自动更新，解决了主体对象与观察者之间功能的耦合，即一个对象状态改变给其他对象通知的问题
+	*/
+
+	// 观察者的特点，把观察者都加到实例化的目标上，目标一动，牵一发而动全身，
+	// 要观察的目标
+	class Subject {
+		constructor() {
+			this.observers = []
+		}
+
+		add(observers) {
+			this.observers.push(observers)
+		}
+
+		notify() {
+			this.observers.forEach(item => {
+				console.log(item)
+				item.update()
+			})
+		}
+
+		remove(observer) {
+			this.observers = this.observers.filter(item => item !== observer)
+		}
+	}
+
+	class Observer {
+		constructor(name) {
+			this.name = name
+		}
+		update() {
+			console.log('update', this.name)
+		}
+	}
+
+	let sub = new Subject()
+	let obser1 = new Observer('小铜钱')
+	let obser2 = new Observer('小鱼')
+	let obser3 = new Observer('老王')
+
+	sub.add(obser1)
+	sub.add(obser2)
+	sub.add(obser3)
+
+	setTimeout(() => {
+		// 牵一发动全身
+		sub.notify()
+	})
+</script>
