@@ -23,35 +23,9 @@
 
 	// 观察者的特点，把观察者都加到实例化的目标上，目标一动，牵一发而动全身，
 	// 要观察的目标
-	class Subject {
-		constructor() {
-			this.observers = []
-		}
 
-		add(observers) {
-			this.observers.push(observers)
-		}
-
-		notify() {
-			this.observers.forEach(item => {
-				console.log(item)
-				item.update()
-			})
-		}
-
-		remove(observer) {
-			this.observers = this.observers.filter(item => item !== observer)
-		}
-	}
-
-	class Observer {
-		constructor(name) {
-			this.name = name
-		}
-		update() {
-			console.log('update', this.name)
-		}
-	}
+	// 优势：目标者和观察者，功能耦合度降低，专注自身功能逻辑，观察者被动接收更新，时间上解耦，实时接收目标者更新状态
+	// 缺点：观察者模式虽然实现了对象之间依赖关系的低耦合，但却不能对事件通知进行细分管控，比如，筛选通知，指定主题事件通知
 
 	let sub = new Subject()
 	let obser1 = new Observer('小铜钱')

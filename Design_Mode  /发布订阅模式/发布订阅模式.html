@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+
+	/*
+		发布订阅模式
+
+		1、观察者和目标都要互相知道
+		2、发布者和订阅者不用互相知道，通过第三方实现调度，属于经过解耦合的观察者模式
+	*/
+	// publish 发布者
+	// subscribe 订阅
+
+	const PubSub = {
+		list: [],
+		publish() {
+			this.list.forEach(item => item())
+		},
+		subscribe(cb) {
+			this.list.push(cb)
+		}
+	}
+
+	function testA() {
+		console.log('testA')
+	}
+	function testB() {
+		console.log('testB')
+	}
+	PubSub.subscribe(testA)
+	PubSub.subscribe(testB)
+
+
+	// PubSub.publish()
+
+</script>
+
+<script>
+
+	// 事件细分
+	const PubSub1 = {
+		messages: {},
+		publish(type, data) {
+			if(!this.messages[type]) {
+				return
+			}
+			this.messages[type].forEach(item => item(data))
+		},
+		subscribe(type, cb) {
+			if (!this.messages[type]) {
+				this.messages[type] = [cb]
+			} else {
+				this.messages[type].push(cb)
+			}
+		}
+	}
+
+	function testA(data) {
+		console.log('testA', data)
+	}
+	function testB(data) {
+		console.log('testB', data)
+	}
+
+	PubSub1.subscribe('A', testA)
+	PubSub1.subscribe('A', testB)
+	PubSub1.subscribe('B', testB)
+
+	console.log(PubSub1)
+
+	PubSub1.publish('A', '我是A')
+
+</script>
