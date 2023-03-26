@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+
+	/*
+		桥接模式：将抽象部分与它的实现部分分离，使他们都可以独立的变化
+		使用场景：一个类存在两个或多个独立变化的维度，且这两个维度都需要进行扩展
+
+		优点：把抽象与实现隔离开，有助于独立的管理各组成部分
+		缺点：每使用一个桥接元素都要增加一次函数调用，这对应用程序的性能会有一些负面影响-- 提高了系统的复杂度
+
+	*/
+
+
+	function Aodi1(engine) {
+		this.engine = engine
+	}
+	Aodi1.prototype.platform = function () {
+		console.log('奥迪1 平台')
+	}
+
+	Aodi1.prototype.loadEngine = function () {
+		this.engine.run()
+	}
+
+
+	function V6() {
+		this.run = function () {
+			console.log('v6发动机')
+		}
+	}
+
+	function V8() {
+		this.run = function () {
+			console.log('v8发动机')
+		}
+	}
+	let aodi1 = new Aodi1(new V6())
+	let aodi2 = new Aodi1(new V8())
+	aodi1.loadEngine()
+	aodi2.loadEngine()
+
+
+</script>
+
+<script>
+	// modal 弹窗
+	// message 提示
+	// toast 提示
+
+	// 动画效果
+	// bounce
+	// slide
+	// rotate
+
+	// 那么 可以组合了，modal 可以 bounce 也可以 slide 其他的也一样
+
+	const Animations = {
+		bounce: {
+			show(ele) {
+				console.log(ele, '弹跳显示')
+			},
+			hide(ele) {
+				console.log(ele, '弹跳隐藏')
+			}
+		},
+		slide: {
+			show(ele) {
+				console.log(ele, '滑动显示')
+			},
+			hide(ele) {
+				console.log(ele, '滑动隐藏')
+			}
+
+		}
+	}
+
+	function Toast(ele, animation) {
+		this.ele = ele
+		this.animation = animation
+	}
+	Toast.prototype.show = function () {
+		// 抽象
+		this.animation.show(this.ele)
+	}
+	Toast.prototype.hide = function () {
+		// 抽象
+		this.animation.hide(this.ele)
+	}
+
+	let toast1 = new Toast('div', Animations.bounce)
+	toast1.show()
+</script>
