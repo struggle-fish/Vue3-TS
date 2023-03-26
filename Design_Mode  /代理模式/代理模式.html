@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+
+	/*
+		代理模式
+		代理模式，为其他对象提供一种代理以控制只改对象的访问
+
+		代理模式使得代理对象控制具体对象的引用，代理几乎可以是任何对象：文件，资源，内存中的对象，或者是一些难以赋值的东西
+	*/
+
+	class Star {
+		play() {
+			console.log('演戏')
+		}
+	}
+	class StarProxy {
+		constructor() {
+			this.superStar = new Star()
+
+		}
+
+		talk(price) {
+			if (price >= 10000) {
+				this.superStar.play()
+			} else {
+				throw new Error('价格不合适')
+			}
+		}
+	}
+
+	// let jr = new StarProxy()
+	// jr.talk('1000')
+
+</script>
+<script>
+
+	let star = {
+		name: '小铜钱',
+		workprice: 1000
+	}
+	let proxy = new Proxy(star, {
+		get(target, key) {
+			console.log(target, key)
+			console.log('访问了')
+			return target[key]
+		},
+		set(target, key, value) {
+			console.log('设置了', target, key, value)
+		}
+	})
+
+
+	console.log(proxy.name)
+	proxy.workprice = 10
+
+</script>
