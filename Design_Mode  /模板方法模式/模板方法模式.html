@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+	/*
+		模板方法模式
+		模板方法模式由两部分组成，
+		第一部分是抽象父类
+		第二部分是具体实现子类
+		通常在抽象父类中封装了子类的算法框架，包括实现一些公共方法以及封装子类中所有方法的执行顺序，子类通过继承这个抽象类，
+		也继承了整个结构，并且可以选择重写父类的方法
+
+	* */
+
+	var Container = function (params) {
+		var F = function () {}
+		F.prototype.init = function () {
+			var list = this.getData()
+			this.render(list)
+		}
+
+		F.prototype.getData = params.getData || function () {
+			console.log('getData')
+			throw new Error('必须传入GetData')
+		}
+		F.prototype.render = function (list) {
+			console.log('render', list)
+		}
+		return F
+	}
+	var Myclass = Container({
+		getData() {
+			console.log('获取列表数据')
+			return '列表数据啊'
+		}
+	})
+	new Myclass().init()
+
+	var Myclass2 = Container({
+		getData() {
+			console.log('获取详情数据')
+			return '详情数据啊'
+		}
+	})
+	new Myclass2().init()
+</script>
+
