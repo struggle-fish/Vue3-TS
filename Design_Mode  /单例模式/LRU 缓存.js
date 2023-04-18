@@ -2,7 +2,8 @@
 lru-cache
 	为LRU Cache设计一个数据结构，它支持两个操作
 	1、get(key): 如果key 在cache中，则返回对应的value, 否则返回 -1
-	2、set(key, value) 如果key 不在cache 中，则将 （key, value）插入cache 中（注意，如果cache已满，则必须把最近未使用的元素从cache中删除）
+	2、set(key, value) 如果key 不在cache 中，则将 （key, value）插入cache 中（注意，如果cache已满，
+	则必须把最近未使用的元素从cache中删除）
 	如果key 在cache中，则重置value的值
 
 */
