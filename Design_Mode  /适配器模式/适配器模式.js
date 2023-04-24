@@ -73,8 +73,25 @@ ajax({
 	}
 })
 
+// 常用的场景
+// let $ = require('jquery')
+window.$ = {
+	ajax(options) {
+		return fetch(options.url, {
+			method: options.type || 'GET',
+			body: JSON.stringify(options.data || {}),
+		}).then(res => res.json())
+	}
+}
 
-
+$.ajax({
+	url,
+	type: 'POST',
+	dataType: 'json',
+	data: { id: 1 }
+}).then(function (data) {
+	console.log(data)
+})
 
 
 
