@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+	<ul id="urlist">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+	</ul>
+</body>
+
+<script>
+	let urllist = document.getElementById('urlist')
+	// 事件委托（事件代理），想让li 触发点击事件，
+	// 但是缺给 li 的爸爸绑定点击事件了，委托给了它爸爸
+	urllist.addEventListener('click', function (event){
+		alert(event.target.innerHTML)
+	})
+</script>
+
+
+</html>
+<script src="代理模式.js"></script>
+
+
+<script>
+let handler = {
+    get: function(target, key) {
+        console.log('getting ' + key);
+        return target[key]; // 不是target.key
+    },
+    set: function(target, key, value) {
+        console.log('setting ' + key);
+        target[key] = value;
+    }
+}
+let proxy = new Proxy(target, handler)
+</script>
