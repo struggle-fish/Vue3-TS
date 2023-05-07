@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<!--<div id="root">-->
+<!--	<p>姓 <input type="text" v-model="firstName"></p>-->
+<!--	<p>名 <input type="text" v-model="lastName"></p>-->
+<!--	<p>{{ fullName }}</p>-->
+<!--</div>-->
+<div id="name"></div>
+<div id="age"></div>
+</body>
+</html>
+<script>
+	let name = document.getElementById('name')
+	let age = document.getElementById('age')
+	class Dep {
+		subs = []
+		addSub(sub) {
+			this.subs.push(sub)
+		}
+		notify() {
+			this.subs.forEach(sub => sub())
+		}
+	}
+
+	function observer(target) {
+		Object.keys(target).forEach(key => {
+			let val = target[key]
+
+			let dep = new Dep()
+			if (key == 'name') {
+				name.innerHTML = val
+				dep.addSub(() => name.innerHTML = val)
+			} else if (key == 'age') {
+				age.innerHTML = val
+				dep.addSub(() => age.innerHTML = val)
+			}
+
+
+			Object.defineProperty(target, key, {
+				get: function () {
+					return val
+				},
+				set: function (newVal) {
+					val = newVal
+					dep.notify()
+				}
+			})
+
+			console.log(dep, '内容是什么')
+		})
+	}
+
+	let obj = {
+		name: '小铜钱',
+		age: 18
+	}
+	observer(obj)
+	setTimeout(() => {
+		obj.name = '钢镚儿'
+	}, 2000)
+
+	setTimeout(() => {
+		obj.age = 20
+	}, 3000)
+
+</script>
+<!--<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>-->
+
+<!--<script>-->
+<!--	new Vue({-->
+<!--		el: '#root',-->
+<!--		data: {-->
+<!--			firstName: '张',-->
+<!--			lastName: '三',-->
+<!--			fullName: '你好啊'-->
+<!--		},-->
+<!--		watch: {-->
+<!--			fullName(newName, oldName) {-->
+<!--				this.fullName = newName + this.lastName-->
+<!--			}-->
+<!--		}-->
+<!--	})-->
+<!--</script>-->
