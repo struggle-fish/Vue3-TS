@@ -159,8 +159,9 @@ function getResult(strOrBoolOrNum: string | number | boolean) {
 
 // Object.creat({})
 
-// 大写的 Object 类型不用 （万物结对象， 最终都会找到Object）
-function create(target: object) { // 这里 写成 Object 的话，那就是不校验了，万物结对象
+// 大写的 Object 类型不用 （万物皆对象， 最终都会找到Object）
+// 这里 写成 Object 的话，那就是不校验了，万物皆对象
+function create(target: object) {
 
 }
 
@@ -178,7 +179,11 @@ console.log(sy1 === sy2)
 // const big: bigint = new BigInt(Number.MAX_SAFE_INTEGER + 100)
 // bigint 不能赋值给number
 
+// =====================================================
 
+// any 不进行类型检测，一旦写了 any ,所有校验都会消失
+// 如果一个变量声明的时候没有赋值，默认是 any
+// 出问题了，自己负责
 
 
 
