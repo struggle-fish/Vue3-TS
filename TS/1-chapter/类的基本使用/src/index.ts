@@ -11,7 +11,7 @@
 			静态的属性和方法
 
 			
-	类的修饰符 
+	类的修饰符
 		public (公开的，我自己，我的儿子，外界都可以访问)
 		protected 受保护的，我自己，我儿子可以访问
 		private 私有的 只能我自己
@@ -23,32 +23,33 @@
 */
 
 
-class Circle { // 类的本质也是函数，所以 默认值，可选参数，剩余运算符这些都可以用
-	// 所有实例上的属性都需要先声明在使用
-	x: number
-	y: number
-	// x!: number
-	// y!: number
-	constructor(x: number, y: number = 0, ...args: number[]) {
-		// 默认赋值，如果不赋值，声明哪里会提示报错
-		// 不想赋值，那就使用非空断言!
-		this.x = x
-		this.y = y
-	}
+// class Circle { // 类的本质也是函数，所以 默认值，可选参数，剩余运算符这些都可以用
+// 	// 所有实例上的属性都需要先声明在使用
+// 	x: number
+// 	y: number
+// 	// x!: number
+// 	// y!: number
+// 	constructor(x: number, y: number = 0, ...args: number[]) {
+// 		// 默认赋值，如果不赋值，声明哪里会提示报错
+// 		// 不想赋值，那就使用非空断言!
+// 		this.x = x
+// 		this.y = y
+// 	}
 
-}
+// }
 
-let circle = new Circle(100, 100)
-console.log(circle.x)
+// let circle = new Circle(100, 100)
+// console.log(circle.x)
+
 // =======================================================================
-// 类的修饰符 
+// 类的修饰符
 // public (公开的，我自己，我的儿子，外界都可以访问)
 // protected 受保护的，我自己，我儿子可以访问
 // private 私有的 只能我自己
 
 // class Animal {
-// 	public name!: string 
-// 	age!: number // 不写修饰符的话 默认就是 public 
+// 	public name!: string
+// 	age!: number // 不写修饰符的话 默认就是 public
 // 	constructor(name: string, age: number) {
 // 		this.name = name
 // 		this.age = age
@@ -68,20 +69,31 @@ console.log(circle.x)
 // 	// 参数上添加 public protected private 这些属性会默认添加到实例
 // 	constructor(public name: string, public age: number) {
 // 	}
+// 	getName() {
+// 		console.log(this.name)
+// 	}
 // }
-
+//
 // class Cat extends Animal {
-
+// 	constructor(name: string, age: number) {
+// 		super(name, age)
+// 		console.log(this.name)
+// 	}
 // }
 // let cat = new Cat('汤姆', 10)
 // console.log(cat.name)
 // console.log(cat.age)
+
+
 // =======================================================================
 // class Animal {
 // 	constructor(protected name: string, public age: number) {
 // 	}
+// 	getName() {
+// 		console.log(this.name)
+// 	}
 // }
-
+//
 // class Cat extends Animal {
 // 	address = '地址'
 // 	constructor(name: string, age: number, address: string = '中华') {
@@ -99,8 +111,11 @@ console.log(circle.x)
 // class Animal {
 // 	constructor(private name: string, public age: number) {
 // 	}
+// 	getName() {
+// 		console.log(this.name)
+// 	}
 // }
-
+//
 // class Cat extends Animal {
 // 	address = '地址'
 // 	constructor(name: string, age: number, address: string = '中华') {
@@ -112,6 +127,7 @@ console.log(circle.x)
 // let cat = new Cat('汤姆', 10)
 // console.log(cat.name) // 属性“name”为私有属性，只能在类“Animal”中访问。ts(2341)
 // console.log(cat.age)
+
 
 // =======================================================================
 // class Animal {
@@ -220,33 +236,31 @@ console.log(circle.x)
 // 	}
 // }
 
-
-
 // =======================================================================
 // super 关键字  指代的可能是 父类  或者是父类的原型
-class Animal {
-	static getType() {
-		return '哺乳类'
-	}
+// class Animal {
+// 	static getType() {
+// 		return '哺乳类'
+// 	}
 
-	say () {
-		console.log('父类原型-say')
-	}
-}
+// 	say () {
+// 		console.log('父类原型-say')
+// 	}
+// }
 
-class Mouse extends Animal {
-	static getType() {
-		super.getType() // 调用父类的方法 此时super 指代的是父类
-		return '老鼠'
-	}
-	say () {
-		super.say()
-		console.log('子类原型-say')
-	}
-}
+// class Mouse extends Animal {
+// 	static getType() {
+// 		super.getType() // 调用父类的方法 此时super 指代的是父类
+// 		return '老鼠'
+// 	}
+// 	say () {
+// 		super.say()
+// 		console.log('子类原型-say')
+// 	}
+// }
 
-let mouse = new Mouse()
-console.log(mouse.say())
+// let mouse = new Mouse()
+// console.log(mouse.say())
 
 // 正常类中，原型属性（get set 属性访问器来实现）
 // 原型方法 （Animal.prototype）

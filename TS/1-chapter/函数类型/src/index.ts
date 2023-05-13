@@ -62,7 +62,9 @@ sum5('a')
 
 // 默认参数 =  js的默认值
 type SumType3 = (a: string, b?: string) => string // 这叫类型
-let sum6: SumType3 = function (a, b = 'bb' ): string { // 把这个函数赋值到了 SumType3 类型上 b = 'bb' 这是值，值才可以给默认值
+
+// 把这个函数赋值到了 SumType3 类型上 b = 'bb' 这是值，值才可以给默认值
+let sum6: SumType3 = function (a, b = 'bb' ): string {
 	return a + b
 }
 sum6('a')
@@ -90,10 +92,11 @@ const person = {
 	name: '小铜钱',
 	age: 18
 }
-
-function getName(key: string) { // => getName(this: any, key: string) 
-	return this[key] // "this" 隐式具有类型 "any"，因为它没有类型注释
-}
+// => getName(this: any, key: string)
+// "this" 隐式具有类型 "any"，因为它没有类型注释
+// function getName(key: string) {
+// 	return this[key]
+// }
 
 // getName.call(person, 'name')
 
@@ -103,12 +106,14 @@ function getName(key: string) { // => getName(this: any, key: string)
 // typeof 取变量的类型， 返回的是类型
 type Person = typeof person
 
-/* 
+/*
 type Person = {
 	name: string;
 	age: number;
 }
 */
+
+
 
 function getName2(this: Person, key: string) { // 这里的key 为什么不安全，传递一个对象的时候，如果取了一个不存在的属性，是不是就不安全了
 	return this[key] // 元素隐式具有 "any" 类型，因为类型为 "string" 的表达式不能用于索引类型 "{ name: string; }"。在类型 "{ name: string; }" 上找不到具有类型为 "string" 的参数的索引签名
@@ -116,6 +121,7 @@ function getName2(this: Person, key: string) { // 这里的key 为什么不安�
 
 // 把 person 里的key 在拿出来
 type PersonKey = keyof Person // => type PersonKey = "name" | "age"
+
 function getName3(this: Person, key: PersonKey) {
 	return this[key]
 }
