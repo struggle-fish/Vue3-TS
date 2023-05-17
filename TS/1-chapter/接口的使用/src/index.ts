@@ -288,16 +288,41 @@ class Speak2 implements SpeakEng, SpeakChinese {
 
 // ==========================================
 
+// 描述实例
+// 描述构造函数类型，类类型，描述的是实例
+// 想要获取到类本身的类型，需要采用 typeof 获取
+// class Person {
+
+// }
+// type PersonType =  typeof Person
+
+// function createInstance(clazz: PersonType): Person {
+// 	return new clazz()
+// }
 
 
+// let instance = createInstance(Person)
 
 
+// ==========================================
+// 
+class Animal {
+
+}
+class Meat {}
+
+type PersonType =  {
+	new (): any
+}
+
+function createInstance(clazz: PersonType): Meat {
+	return new clazz()
+}
 
 
+let instance = createInstance(Animal)
 
-
-
-
+// typeof Animal -> new (): Animal
 
 
 
