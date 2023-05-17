@@ -275,12 +275,58 @@
 
 
 
+// 单例模式
+class Singleton {
+	static instance = new Singleton()
+	private constructor() {}
+	static getInstance() {
+		return this.instance
+	}
+}
+
+let instance1 = Singleton.getInstance()
+let instance2 = Singleton.getInstance()
+console.log(instance1 == instance2)
+
+// =======================================================================
 
 
+// 抽象类 不能被 new
+// abstract class Person {
+// 	// 这样是描述实例上的方法的
+// 	abstract eat: () => void
+// 	drink() {} // 抽象类中可以有非抽象方法
+// }
+
+// class Teacher extends Person {
+// 	eat: () => void
+// 	constructor() {
+// 		super()
+// 		this.eat = function() {}
+// 	}
+// }
+// =======================================================================
 
 
+abstract class Person {
+	// 对比这个 	abstract eat: () => void
+	// 这么写原则上是描述的原型上的方法，但是写实例上也不报错
+	abstract eat(): void // 需要子类来实现一个 eat 方法 
+	drink() {} // 抽象类中可以有非抽象方法
+}
 
+class Teacher extends Person {
+	// eat: () => void
+	// constructor() {
+	// 	super()
+	// 	this.eat = function() {}
+	// }
 
+	// 实现 abstract eat(): void
+	eat(): void {
+		
+	}
+}
 
 
 
