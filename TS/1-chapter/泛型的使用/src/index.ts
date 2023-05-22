@@ -82,21 +82,20 @@ let instance3 = createInstance(Animal)
 
 // ===================================
 // 入参 和 返回值要求是相同的  有映射关系
-// 
-const getArray = <T>(times: number, val: T): T[] => {
-	let result = []
-
-	for (let i = 0; i < times; i++) {
-		result.push(val)
-	}
-	return result
-}
-
-// 当使用的时候才可以确定类型
-getArray(3, 123) // => getArray<number>(3, 123)
-
-getArray(3, '234') // getArray<string>(3, '234') 
-
+//
+// const getArray = <T>(times: number, val: T): T[] => {
+// 	let result = []
+//
+// 	for (let i = 0; i < times; i++) {
+// 		result.push(val)
+// 	}
+// 	return result
+// }
+//
+// // 当使用的时候才可以确定类型
+// getArray(3, 123) // => getArray<number>(3, 123)
+//
+// getArray(3, '234') // getArray<string>(3, '234')
 
 
 // ===================================
@@ -180,11 +179,11 @@ swap2(['a', true]) // const swap2: <string, boolean>(tuple: [string, boolean]) =
 
 // ======================================================================================
 
-type ICallback<T> = (item:T, idx: number) => void  // 使用接口的时候确定了类型
-type ICallback1 = <T>(item:T, idx: number) => void  // 跟上面的写法有什么区别 ，在调用函数的时候确定了类型
+type ICallback1<T> = (item:T, idx: number) => void  // 使用接口的时候确定了类型
+type ICallback2 = <T>(item:T, idx: number) => void  // 跟上面的写法有什么区别 ，在调用函数的时候确定了类型
 
 
-type IForEach = <T>(arr: T[], callback: ICallback<T>) => void
+type IForEach = <T>(arr: T[], callback: ICallback1<T>) => void
 
 const forEach: IForEach = (arr, callback) => {
 	for (let i = 0; i < arr.length; i++) {
@@ -274,7 +273,7 @@ getLen((a: number, b: string) => {})
 
 
 
-// 索引查询 keyof 
+// 索引查询 keyof
 // 约束了索引的签名, 约束就是，约束了这个参数能是什么类型
 function getVal<T extends object, U extends keyof T>(obj: T, key: U) {
 	return obj[key] // 在类型 "{}" 上找不到具有类型为 "string" 的参数的索引签名
@@ -355,30 +354,36 @@ list.add(12)
 list.add(100)
 
 // 泛型 可以用在函数  对象  类  工具类型
-// 2个重要 默认值  泛型约束 
+// 2个重要 默认值  泛型约束
 // ======================================================================================
 
 
 // 交叉类型（交集） 会把多个类型变成一个类型  &  都要满足
 // 联合类型（并集）|
 
-// interface P1 {
-// 	handsome: string
-// }
-// interface P2 {
-// 	hight: string
-// }
+interface P1 {
+	handsome: string
+}
+interface P2 {
+	hight: string
+}
 
-// // type P = P1 | P2 // 联合类型是或者的关系  => 只高  只帅  又高又帅 
-// // let p: P = {
-// // 	handsome: '帅'
-// // } 
+// type P = P1 | P2 // 联合类型是或者的关系  => 只高  只帅  又高又帅
+// let p: P = {
+// 	handsome: '帅'
+// }
 
 // type P = P1 & P2 // 交叉类型 是  都要满足  => 又高又帅
 // let p: P = {
 // 	handsome: '',
 // 	hight: ''
 // }
+
+type P = P1 & P2
+let p: P = {
+	handsome: '',
+	hight: ''
+}
 
 
 // ======================================================================================
@@ -428,7 +433,7 @@ res.b // never
 
 type Compute<T> = { [P in keyof T] : T[P] }
 
-type rr = Compute<typeof res> 
+type rr = Compute<typeof res>
 /*
 
 type rr = {
