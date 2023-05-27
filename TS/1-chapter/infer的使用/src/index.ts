@@ -3,10 +3,10 @@
 /*
 
 
-	类型推断 inference infer 
+	类型推断 inference infer
 
 	内置类型
-	ReturnType Parameters  InstanceType 
+	ReturnType Parameters  InstanceType
 
 
 */
@@ -14,7 +14,7 @@
 
 function getUser(name: string, age: number) {
 	return {
-		name, 
+		name,
 		age,
 		address: {}
 	}
@@ -36,7 +36,7 @@ typeof getUser // 这个是获取函数本身的类型
 
 // type ReturnType<T extends (...args: any) => any> = T extends (...args: any) => infer R ? R : any;
 
-type T1 = ReturnType<typeof getUser> 
+type T1 = ReturnType<typeof getUser>
 
 // type T1 = {
 // 	name: string;
@@ -54,7 +54,6 @@ type T1 = ReturnType<typeof getUser>
 type Parameters<T extends (...args: any[]) => any> = T extends (...args: infer P) => any ? P : never
 // type Parameters<T extends (...args: any) => any> = T extends (...args: infer P) => any ? P : never;
 type T2 = Parameters<typeof getUser> // type T2 = [name: string, age: number]
-
 
 // =====================================================================================================
 // 获取实例的类型
@@ -102,6 +101,7 @@ type x = TailToHead<['小铜钱', 30 , '北京']> // => ['北京', '小铜钱', 
 // 将元组转化成联合类型
 type ElementOf<T> = T extends Array<infer R> ? R : any // Array<infer R>  (string|number|boolean)
 type TupleToUnion = ElementOf<[string, number, boolean]> // type TupleToUnion = string | number | boolean
+type T5 = ElementOf<typeof a> // type T5 = string | number
 
 
 // Promise
@@ -113,7 +113,7 @@ let p1: Promise<number> = new Promise((resolve, reject) => {
 p1.then(data=> { // data: number 推导出来的
 	return 'abc'
 }).then(data => {
-	
+
 })
 
 
