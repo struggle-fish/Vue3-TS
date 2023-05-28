@@ -136,6 +136,19 @@ parentArray = childArray
 // let array: Array<string> = []
 
 
+function fn1 (callback: (a: string | boolean) => boolean | string) {
+	// callback('a')
+	callback(true)
+}
+
+// 传 父  返子
+fn1((a: string | boolean | number ) => {
+	// return 'abc'
+	return 'abc' // 返子
+})
+
+
+
 // =====================================================================================================
 
 // 泛型的 兼容性 比较的是最终的结果比较的不是泛型传递的参数
