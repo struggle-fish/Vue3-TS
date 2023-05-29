@@ -1,6 +1,9 @@
 import { VNode, CreateElement, RenderContext } from 'vue';
 import { InjectOptions, PropsDefinition } from 'vue/types/options';
-
+/*
+* 这里放了很多 自定义的类型，统一管理
+*
+* */
 // TODO: TS: 注解
 //  type 是什么呢 类型别名
 //  类型别名用来给一个类型起个新名字，使用 type 创建类型别名，
@@ -9,6 +12,7 @@ import { InjectOptions, PropsDefinition } from 'vue/types/options';
 //    2、如果想保持代码统一，还是可选择使用 type。通过上面的对比，类型别名 其实可涵盖 interface 的大部分场景。
 //    3、对于 React 组件中 props及 state，使用 type ，这样能够保证使用组件的地方不能随意在上面添加属性。如果有自定义需求，可通过 HOC二次封装。
 //    4、编写三方库时使用interface，其更加灵活自动的类型合并可应对未知的复杂使用场景。
+
 export type EventHandler = (event: Event) => void;
 
 // TODO: TS: 注解 定义一个字典类型 就是一个 key是 string 值是any的对象
@@ -25,10 +29,11 @@ export type ScopedSlot<Props = any> = (
   props?: Props
 ) => VNode[] | VNode | undefined;
 
-// 这玩意是个名为 DefaultSlots的 对象别名
+// 这玩意是个名为 DefaultSlots的 对象别名 也不能叫对象吧，反正就是有个default 的函数
 export type DefaultSlots = {
   default?: ScopedSlot;
 };
+
 // TODO: TS: 注解 注意这里为什么要定义成交叉类型
 //  这玩意是个对象，对象的属性是个函数
 export type ScopedSlots = DefaultSlots & {
@@ -52,8 +57,9 @@ export type DefaultProps = ObjectIndex;
 // TODO: TS: 注解
 //  注意这个不是定义了一个对象，这个是函数调用签名
 //  调用签名描述了一种函数类型，包含了函数的属性、调用函数时应传递的参数以及返回值
+//  理解起来也简单，就是说首先的是个函数，其次可以有一些可选的属性
 export type FunctionComponent<
-  Props = DefaultProps,
+  Props = DefaultProps, // 这玩意就是个对象
   PropDefs = PropsDefinition<Props>
 > = {
   (
