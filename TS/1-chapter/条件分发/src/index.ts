@@ -154,7 +154,7 @@ type R12 = Bird | Fish extends Fish ? Water : Sky // type R12 = Sky
 
 // 判断谁是谁的子类型的时候就会发生异常
 
-// 1 | 2 是 1 | 2 | 3 的子集  翻过来就是不对了  <1 | 2 | 3, 1 | 2> 
+// 1 | 2 是 1 | 2 | 3 的子集  翻过来就是不对了  <1 | 2 | 3, 1 | 2>
 
 type UnionAssets<T, U> = T extends U ? true : false
 
@@ -213,9 +213,7 @@ type ExtractResult = Extract<string | number, string | number | boolean>
 
 // 两个集合的差集
 type Exclude<T, U> = T extends U ? never : T;
-type E1 = Exclude<string | number | boolean, string | number> // type E1 = boolean
-
-
+type E1 = Exclude<string | boolean, string | number> // type E1 = boolean
 
 
 
