@@ -1,4 +1,7 @@
 import Vue from 'vue';
+/*
+* 公共方法
+* */
 // TODO: TS: 注解
 //  把所有的都统一放到index导出
 export { createNamespace } from './create';
