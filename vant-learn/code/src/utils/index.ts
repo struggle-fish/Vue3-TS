@@ -1,6 +1,6 @@
 import Vue from 'vue';
 /*
-* 公共方法
+* 公共方法1
 * */
 // TODO: TS: 注解
 //  把所有的都统一放到index导出
