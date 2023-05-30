@@ -31,7 +31,7 @@ export function inherit(
 ): InheritContext {
   // console.log(context.data, 'context.data')
   // TODO: TS: 注解
-  // 这里的key 都是 DOM 上的属性比如  ref style attrs  class
+  //  这里的key 都是 DOM 上的属性比如  ref style attrs  class
   const result = inheritKey.reduce((obj, key) => {
     // console.log(obj, 'obj-1')
     // console.log(key, 'key-1')

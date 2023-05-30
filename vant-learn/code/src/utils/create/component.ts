@@ -31,8 +31,11 @@ export type TsxComponent<Props, Events, Slots> = (
   props: Partial<Props & Events & TsxBaseProps<Slots>>
 ) => VNode;
 
+// TODO: TS: 注解
+//  vue 组件注册
 function install(this: ComponentOptions<Vue>, Vue: VueConstructor) {
   const { name } = this;
+  console.log('组件注册一下, 是给外界调用注册的，不是本站-------')
   Vue.component(name as string, this); // 注册 van-button 这种形式的组件
   Vue.component(camelize(`-${name}`), this); // 注册这种形式的 VanButton
 }
@@ -64,8 +67,10 @@ function transformFunctionComponent(
     functional: true,
     props: pure.props,
     model: pure.model,
-    render: (h, context): any =>
-      pure(h, context.props, unifySlots(context), context),
+    render: (h, context): any => {
+      console.log('组件渲染一下------')
+      return pure(h, context.props, unifySlots(context), context)
+    },
   };
 }
 
@@ -103,8 +108,10 @@ export function createComponent(name: string) {
     // TODO: TS: 不懂
     //  即使把这一行注释掉，组件也能渲染，那组件是怎么注册的呢
     //  还有就是，这个 install 是自动调用的吗
-    sfc.install = install;
-
+    // sfc.install = install;
+    if(sfc.name == 'van-button') {
+      console.log(sfc, '当前是什么函数')
+    }
     return sfc as TsxComponent<Props, Events, Slots>;
   };
 }

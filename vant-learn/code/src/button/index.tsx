@@ -59,6 +59,7 @@ export type ButtonSlots = DefaultSlots & {
 
 const [createComponent, bem] = createNamespace('button');
 
+// 这里是函数的定义，那么他在哪儿调用的呢
 function Button(
   h: CreateElement,
   props: ButtonProps,
@@ -227,5 +228,21 @@ Button.props = {
     default: 'left',
   },
 };
-console.log(createComponent<ButtonProps, ButtonEvents, ButtonSlots>(Button), '返回值是什么')
+
+
+// console.log(createComponent<ButtonProps, ButtonEvents, ButtonSlots>(Button), '返回值是什么')
+/*
+{
+  functional: true,
+  install: ƒ install(Vue),
+  model: undefined,
+  name: "van-button",
+  props: {to: Array(2), url: ƒ, replace: ƒ, text: ƒ, icon: ƒ, …},
+  render: ƒ render(h, context),
+
+}
+*/
+
+// TODO: TS: 注解
+//  导出函数后，就能注册成组件，是vant-cli 做的事情，可以研究下工程化或者脚手架相关的
 export default createComponent<ButtonProps, ButtonEvents, ButtonSlots>(Button);
