@@ -58,6 +58,27 @@ export type DefaultProps = ObjectIndex;
 //  注意这个不是定义了一个对象，这个是函数调用签名
 //  调用签名描述了一种函数类型，包含了函数的属性、调用函数时应传递的参数以及返回值
 //  理解起来也简单，就是说首先的是个函数，其次可以有一些可选的属性
+/*
+ 重点：
+  FunctionComponent 是一个类型别名（type alias），用于表示函数式组件的函数签名。
+  在 Vue.js 中，组件可以使用对象形式或函数形式进行定义。
+  函数式组件是一种特殊类型的组件，它是一个函数，接受一些参数并返回一个渲染结果。
+
+  函数式组件通常用于无状态的展示型组件，它不需要维护内部状态。
+
+
+  它表示一个函数式组件的函数签名，具有以下特点：
+
+  函数接受四个参数：
+    h: CreateElement：渲染函数，用于创建 VNode。
+    props: Props：组件的属性对象。
+    slots: ScopedSlots：插槽对象。
+    context: RenderContext<Props>：渲染上下文对象。
+  函数返回一个 VNode 对象或 undefined。
+  可以定义 props、model 和 inject 属性，用于指定组件的属性定义、双向绑定选项和注入选项。
+
+
+*/
 export type FunctionComponent<
   Props = DefaultProps, // 这玩意就是个对象
   PropDefs = PropsDefinition<Props>

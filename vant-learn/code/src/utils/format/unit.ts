@@ -2,6 +2,12 @@ import { isDef, inBrowser } from '..';
 import { isNumeric } from '../validate/number';
 
 // 添加单位
+// 用于将值转换为带有单位的字符串形式。
+/*
+作用是将传入的值转换为带有单位的字符串形式，常用于处理需要加单位的 CSS 属性值。
+例如，如果传入 100，则返回 '100px'；如果传入 '50%'，则返回 '50%'；
+如果传入 undefined，则返回 undefined
+*/
 export function addUnit(value?: string | number): string | undefined {
   if (!isDef(value)) {
     return undefined;
@@ -26,6 +32,9 @@ function getRootFontSize() {
   return rootFontSize;
 }
 // 转成rem
+/*
+  用于将传入的带有 rem 单位的值转换为像素值。
+*/
 function convertRem(value: string) {
   value = value.replace(/rem/g, '');
   return +value * getRootFontSize();

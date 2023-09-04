@@ -25,16 +25,38 @@ const mapInheritKey: ObjectIndex = { nativeOn: 'on' };
 
 // inherit partial context, map nativeOn to on
 // 继承部分上下文，将nativeOn映射为on
+/*
+
+该函数用于从上下文对象中继承一些属性，并返回一个新的继承上下文对象。
+context: Context：上下文对象，包含一些数据和事件监听器。
+inheritListeners?: boolean：一个可选的布尔值参数，表示是否继承事件监听器。
+
+函数的返回类型为 InheritContext，表示继承后的上下文对象。
+
+总体来说，该函数的作用是从给定的上下文对象中继承指定的属性并返回一个新的对象。
+这个函数通常用于组件开发中，在组件内部需要继承外部传入的一些属性和事件监听器。
+
+
+
+这个函数的作用：
+函数内部首先定义了一个空对象 result，然后使用 inheritKey 数组遍历，
+将上下文对象中的特定属性拷贝到 result 对象中。
+这些特定属性是通过 inheritKey 数组定义的，通常是一些 DOM 元素的属性，
+如 ref、style、attrs、class 等。拷贝时，
+使用 mapInheritKey 对象将属性名进行了映射，然后将属性的值复制到 result 对象中。
+如果 inheritListeners 参数为 true，则表示需要继承事件监听器。
+在这种情况下，会先创建一个空的 result.on 对象，
+然后使用 Object.assign 方法将上下文对象中的事件监听器复制到 result.on 对象中。
+
+最后，函数返回 result 对象作为继承后的上下文对象。
+*/
 export function inherit(
   context: Context,
   inheritListeners?: boolean
 ): InheritContext {
-  // console.log(context.data, 'context.data')
   // TODO: TS: 注解
   //  这里的key 都是 DOM 上的属性比如  ref style attrs  class
   const result = inheritKey.reduce((obj, key) => {
-    // console.log(obj, 'obj-1')
-    // console.log(key, 'key-1')
     if (context.data[key]) {
       obj[mapInheritKey[key] || key] = context.data[key];
     }

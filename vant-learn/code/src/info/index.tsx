@@ -14,6 +14,8 @@ export type InfoProps = {
 
 const [createComponent, bem] = createNamespace('info');
 
+// 无状态组件
+// 函数式组件通常用于无状态的展示型组件，它不需要维护内部状态。
 function Info(
   h: CreateElement,
   props: InfoProps,
@@ -27,7 +29,6 @@ function Info(
     return;
   }
 
-  // debugger
   return (
     <div class={bem({ dot })} {...inherit(ctx, true)} >
       {dot ? '' : props.info}
