@@ -26,7 +26,7 @@ export type IconEvents = {
 };
 
 const [createComponent, bem] = createNamespace('icon');
-
+// console.log(bem('aa', ['primary', 'large']), '测试一下啊1111')
 function isImage(name?: string): boolean {
   return name ? name.indexOf('/') !== -1 : false;
 }
@@ -50,6 +50,10 @@ function Icon(
   ctx: RenderContext<IconProps>
 ) {
   const name = correctName(props.name);
+  // debugger
+
+  console.log(props, '属性都谁')
+  console.log(name);
   const imageIcon = isImage(name);
 
   if (process.env.NODE_ENV === 'development' && props.info) {
@@ -57,6 +61,7 @@ function Icon(
       '[Vant] Icon: "info" prop is deprecated, use "badge" prop instead.'
     );
   }
+  // classPrefix : "van-icon" 这个是怎么来的
   return (
     <props.tag
       class={[
@@ -75,7 +80,7 @@ function Icon(
     </props.tag>
   );
 }
-console.log(bem('images', [{'aa': 1}, {'bb': 2}]), '没给你做')
+
 
 Icon.props = {
   dot: Boolean,
@@ -92,8 +97,10 @@ Icon.props = {
   },
   classPrefix: {
     type: String,
-    default: bem(),
+    default: bem('hah'),
   },
 };
+
+
 
 export default createComponent<IconProps, IconEvents>(Icon);

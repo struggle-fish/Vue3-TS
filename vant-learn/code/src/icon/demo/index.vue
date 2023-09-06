@@ -4,12 +4,11 @@
       <van-tab :title="t('demo')">
         <demo-block :title="t('basicUsage')">
           <van-col span="6" @click="copy(demoIcon)">
-            哈哈哈
             <van-icon :name="demoIcon" />
           </van-col>
-<!--          <van-col span="6" @click="copy(demoImage)">-->
-<!--            <van-icon :name="demoImage" />-->
-<!--          </van-col>-->
+          <van-col span="6" @click="copy(demoImage)">
+            <van-icon :name="demoImage" />
+          </van-col>
         </demo-block>
 
 <!--        <demo-block :title="t('badge')">-->
@@ -87,6 +86,19 @@ import icons from '@vant/icons';
 import { RED } from '../../utils/constant';
 
 // from https://30secondsofcode.org
+/*
+  用于将指定的字符串复制到剪贴板。
+  1、创建一个<textarea>元素，并将要复制的字符串赋值给它的value属性。
+  2、通过设置readonly属性，确保<textarea>元素只读。
+  3、设置<textarea>元素的样式，将其定位到屏幕外的位置，使其不可见。
+  4、将<textarea>元素添加到document.body中。
+  5、检查是否有已选中的文本范围（range），如果有，则将其保存在selected变量中。
+  6、选中<textarea>元素中的文本内容。
+  7、使用document.execCommand('copy')命令将选中的内容复制到剪贴板。
+  8、从document.body中移除<textarea>元素。
+  9、如果之前存在已选中的文本范围，则将其重新选中。
+
+* */
 function copyToClipboard(str) {
   const el = document.createElement('textarea');
   el.value = str;
@@ -95,11 +107,12 @@ function copyToClipboard(str) {
   el.style.left = '-9999px';
   document.body.appendChild(el);
 
+  // getSelection 表示用户选择的文本范围或光标的当前位置
   const selected =
     document.getSelection().rangeCount > 0
       ? document.getSelection().getRangeAt(0)
       : false;
-
+  console.log(selected, 'selected');
   el.select();
   document.execCommand('copy');
   document.body.removeChild(el);
@@ -147,6 +160,7 @@ export default {
   },
 
   methods: {
+    // 用户点击，提示复制成功
     copy(icon, option = {}) {
       let tag = `<van-icon name="${icon}"`;
       if ('dot' in option) {

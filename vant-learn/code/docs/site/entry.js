@@ -29,6 +29,8 @@ Vue.mixin({
   computed: {
     t() {
       const { name } = this.$options;
+      console.log(this.$options);
+      console.log(name, '这个是什么')
       const { lang = 'zh-CN' } = (this.$route && this.$route.meta) || {};
       const prefix = name ? camelize(name) + '.' : '';
       const messages = this.$vantMessages[lang];
