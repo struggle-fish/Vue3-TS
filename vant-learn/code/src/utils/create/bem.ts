@@ -28,24 +28,33 @@ export type Mods = Mod | Mod[];
 /*
   gen 函数，根据传入的 el 和 mods 生成修饰符的类名，并将其拼接到元素类名后面
 
-  
+  name：表示块（block）名称，即基础的类名。
+  mods：可选参数，表示元素（element）名称、修饰符（modifier）名称或它们的组合。可以是字符串、字符串数组，或是一个包含布尔值的对象。
+
 * */
 function gen(name: string, mods?: Mods): string {
   if (!mods) {
     return '';
   }
 
+  // 如果 mods 的类型是字符串，说明只有一个修饰符
   if (typeof mods === 'string') {
     return ` ${name}--${mods}`;
   }
-
+  // 如果 mods 是一个数组，表明有多个修饰符。这里使用 reduce 方法对数组进行遍历，递归调用 gen 函数并将每个修饰符拼接到 name 后面，
+  // 最终返回拼接好的类名字符串。
   if (Array.isArray(mods)) {
     // TODO: TS: 注解
     // 递归调用 拼接class van-button--primary
     // @ts-ignore
     return mods.reduce<string>((ret, item) => ret + gen(name, item), '');
   }
+
+  // 如果 mods 是一个对象，会遍历对象的键（即修饰符名称）。
+  // 对于每个键，如果对应的值是真值（例如布尔值为 true），则递归调用 gen 函数并将修饰符拼接到 name 后面
+  // ，否则忽略该修饰符。最终返回拼接好的类名字符串。
   return Object.keys(mods).reduce(
+    // ret 是累积的值，key 是当前遍历到的键。
     (ret, key) => ret + (mods[key] ? gen(name, key) : ''),
     ''
   );
