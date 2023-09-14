@@ -72,7 +72,7 @@ function Icon(
         color: props.color,
         fontSize: addUnit(props.size),
       }}
-      {...inherit(ctx, true)}
+      {...inherit(ctx, true)} // 这个是继承特定属性的
     >
       {/*{slots.default && slots.default()}*/}
       {imageIcon && <img class={bem('image')} src={name} />}
@@ -97,7 +97,7 @@ Icon.props = {
   },
   classPrefix: {
     type: String,
-    default: bem('hah'),
+    default: bem(),
   },
 };
 

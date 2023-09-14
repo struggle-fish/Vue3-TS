@@ -4,79 +4,80 @@
       <van-tab :title="t('demo')">
         <demo-block :title="t('basicUsage')">
           <van-col span="6" @click="copy(demoIcon)">
-            <van-icon :name="demoIcon" />
+            <van-icon :name="demoIcon"  @click="handleTest"/>
           </van-col>
           <van-col span="6" @click="copy(demoImage)">
             <van-icon :name="demoImage" />
           </van-col>
         </demo-block>
 
-<!--        <demo-block :title="t('badge')">-->
-<!--          <van-col span="6" @click="copy(demoIcon, { dot: true })">-->
-<!--            <van-icon :name="demoIcon" dot />-->
-<!--          </van-col>-->
-<!--          <van-col span="6" @click="copy(demoIcon, { badge: '9' })">-->
-<!--            <van-icon :name="demoIcon" badge="9" />-->
-<!--          </van-col>-->
-<!--          <van-col span="6" @click="copy(demoIcon, { badge: '99+' })">-->
-<!--            <van-icon :name="demoIcon" badge="99+" />-->
-<!--          </van-col>-->
-<!--        </demo-block>-->
+        <demo-block :title="t('badge')">
+          <van-col span="6" @click="copy(demoIcon, { dot: true })">
+            <van-icon :name="demoIcon" dot />
+          </van-col>
+          <van-col span="6" @click="copy(demoIcon, { badge: '9' })">
+            <van-icon :name="demoIcon" badge="9" />
+          </van-col>
+          <van-col span="6" @click="copy(demoIcon, { badge: '99+' })">
+            <van-icon :name="demoIcon" badge="99+" />
+          </van-col>
+        </demo-block>
 
-<!--        <demo-block :title="t('color')">-->
-<!--          <van-col span="6" @click="copy(demoIcon, { color: '#1989fa' })">-->
-<!--            <van-icon name="cart-o" color="#1989fa" />-->
-<!--          </van-col>-->
-<!--          <van-col span="6" @click="copy(demoIcon, { color: RED })">-->
-<!--            <van-icon name="fire-o" :color="RED" />-->
-<!--          </van-col>-->
-<!--        </demo-block>-->
+        <demo-block :title="t('color')">
+          <van-col span="6" @click="copy(demoIcon, { color: '#1989fa' })">
+            <van-icon name="cart-o" color="#1989fa" />
+          </van-col>
+          <van-col span="6" @click="copy(demoIcon, { color: RED })">
+            <van-icon name="fire-o" :color="RED" />
+          </van-col>
+        </demo-block>
 
-<!--        <demo-block :title="t('size')">-->
-<!--          <van-col span="6" @click="copy(demoIcon, { size: '40' })">-->
-<!--            <van-icon :name="demoIcon" size="40" />-->
-<!--          </van-col>-->
-<!--          <van-col span="6" @click="copy(demoIcon, { size: '3rem' })">-->
-<!--            <van-icon :name="demoIcon" size="3rem" />-->
-<!--          </van-col>-->
-<!--        </demo-block>-->
+        <demo-block :title="t('size')">
+          <van-col span="6" @click="copy(demoIcon, { size: '40' })">
+            <van-icon :name="demoIcon" size="40" />
+          </van-col>
+          <van-col span="6" @click="copy(demoIcon, { size: '3rem' })">
+            <van-icon :name="demoIcon" size="3rem" />
+          </van-col>
+        </demo-block>
       </van-tab>
 
-<!--      <van-tab :title="t('basic')">-->
-<!--        <van-col-->
-<!--          v-for="icon in icons.basic"-->
-<!--          :key="icon"-->
-<!--          span="6"-->
-<!--          @click="copy(icon)"-->
-<!--        >-->
-<!--          <van-icon :name="icon" />-->
-<!--          <span>{{ icon }}</span>-->
-<!--        </van-col>-->
-<!--      </van-tab>-->
+      <van-tab :title="t('basic')">
+        <van-col
+          v-for="icon in icons.basic"
+          :key="icon"
+          span="6"
+          @click="copy(icon)"
+        >
+          <van-icon :name="icon" />
+          <span>{{ icon }}</span>
+        </van-col>
+      </van-tab>
 
-<!--      <van-tab :title="t('outline')">-->
-<!--        <van-col-->
-<!--          v-for="icon in icons.outline"-->
-<!--          :key="icon"-->
-<!--          span="6"-->
-<!--          @click="copy(icon)"-->
-<!--        >-->
-<!--          <van-icon :name="icon" />-->
-<!--          <span>{{ icon }}</span>-->
-<!--        </van-col>-->
-<!--      </van-tab>-->
+      <van-tab :title="t('outline')">
+        <van-col
+          v-for="icon in icons.outline"
+          :key="icon"
+          span="6"
+          @click="copy(icon)"
+        >
+          <van-icon :name="icon" />
+          <span>{{ icon }}</span>
+        </van-col>
+      </van-tab>
 
-<!--      <van-tab :title="t('filled')">-->
-<!--        <van-col-->
-<!--          v-for="icon in icons.filled"-->
-<!--          :key="icon"-->
-<!--          span="6"-->
-<!--          @click="copy(icon)"-->
-<!--        >-->
-<!--          <van-icon :name="icon" />-->
-<!--          <span>{{ icon }}</span>-->
-<!--        </van-col>-->
-<!--      </van-tab>-->
+      <van-tab :title="t('filled')">
+        <van-col
+          v-for="icon in icons.filled"
+          :key="icon"
+          span="6"
+          @click="copy(icon)"
+        >
+          <van-icon :name="icon" />
+          <span>{{ icon }}</span>
+        </van-col>
+      </van-tab>
+
     </van-tabs>
   </demo-section>
 </template>
@@ -185,6 +186,9 @@ export default {
         message: `${this.t('copied')}：${tag}`,
       });
     },
+    handleTest(){
+      console.log('测试');
+    }
   },
 };
 </script>
