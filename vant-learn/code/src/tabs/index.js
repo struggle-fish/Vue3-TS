@@ -307,6 +307,7 @@ export default createComponent({
     },
 
     // scroll active tab into view
+    // 用于在指定的时间内将元素水平滚动到指定位置
     scrollIntoView(immediate) {
       const { titles } = this.$refs;
 
