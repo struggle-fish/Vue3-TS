@@ -30,6 +30,7 @@ export default createComponent({
   mixins: [
     ParentMixin('vanTabs'),
     BindEventMixin(function (bind) {
+      console.log('---BindEventMixin---调用');
       if (!this.scroller) {
         this.scroller = getScroller(this.$el);
       }
@@ -176,6 +177,7 @@ export default createComponent({
   },
 
   mounted() {
+    console.log('---mounted---调用');
     this.init();
 
     // https://github.com/youzan/vant/issues/7959

@@ -67,6 +67,7 @@ export function ChildrenMixin(parent, options = {}) {
 }
 
 export function ParentMixin(parent) {
+   console.log('----ParentMixin---调用');
   return {
     provide() {
       return {
